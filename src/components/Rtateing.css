@@ -1,0 +1,87 @@
+.rating-section {
+  background: #f8f9fa url("https://www.transparenttextures.com/patterns/cubes.png");
+  background-size: 60px;
+  background-blend-mode: multiply;
+}
+
+.rating-section h1 {
+  font-size: 2.2rem;
+  color: #111;
+}
+
+.underline {
+  border-bottom: 4px solid red;
+  padding-bottom: 2px;
+  border-radius: 10px;
+}
+
+/* Container to arrange cards */
+.rating-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  padding: 0 20px;
+}
+
+.rating-card {
+  width: 100%;
+  max-width: 650px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rating-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 768px) {
+  .rating-card {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+.img-wrapper {
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #eee;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.profile-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.stars {
+  display: flex;
+  gap: 4px;
+}
+
+.card-title-normal {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #222;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.date {
+  font-size: 0.85rem;
+  color: #888;
+}

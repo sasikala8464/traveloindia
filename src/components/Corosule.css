@@ -1,0 +1,82 @@
+.carousel-container {
+  width: 100vw;
+  overflow: hidden;
+  padding: 10px;
+  margin-top: 0;
+  padding-top: 70px; /* space equal to navbar height */
+  
+}
+
+
+/* Full-width image */
+.carousel-image {
+  height: 450px;
+  width: 100vw;
+  object-fit: cover;
+  transition: transform 8s ease;
+}
+
+/* Smooth zoom animation */
+.carousel-item.active .carousel-image {
+  transform: scale(1.05);
+}
+
+/* Caption style */
+.custom-caption {
+  position: absolute;
+  top: 25%;
+  left: 5%;
+  max-width: 350px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 1rem;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  height: 7rem;
+}
+
+/* Scrollable cards */
+.attached-card-scroll {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 20px;
+  gap: 16px;
+  background: #f9f9f9;
+  margin-top: 0;
+  scrollbar-width: thin;
+  scrollbar-color: #888 transparent;
+}
+
+.attached-card-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+.attached-card-scroll::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+.attached-card-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Each card */
+.scroll-card {
+  min-width: 180px;
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-card:hover {
+  transform: scale(1.05);
+}
+
+.scroll-card img {
+  height: 120px;
+  object-fit: cover;
+}

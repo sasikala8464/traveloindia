@@ -1,0 +1,340 @@
+/* Novbar.css - Styled to match screenshot_a23863.png */
+
+.custom-navbar {
+    background-color: #fff;
+    width: 100%;            /* Full width */
+    border-radius: 0;       /* No rounded corners */
+    margin: 0;              /* Remove extra space */
+    box-shadow: none;       /* Remove floating shadow */
+    padding: 10px 20px;
+    position: fixed;        /* Stick to top */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;          /* Stay above other content */
+    border-bottom: 1px solid #ddd; /* Optional subtle divider */
+
+.custom-navbar {
+    background-color: #fff; /* White background as per screenshot */
+    border-radius: 15px; /* Rounded corners for the entire navbar */
+    margin: 20px auto; /* Center horizontally with margin from top/bottom */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 10px 20px; /* Adjust padding inside the navbar */
+   margin: 100%;/* Max width to match screenshot's contained feel */
+    left: 0;
+    right: 0;
+    z-index: 1030; /* Ensure it stays on top */
+    position: fixed; /* Already fixed="top" in JSX, but good to confirm */
+    top: 0; /* Align to the top of the viewport */
+}
+
+/* Specific styling for the Navbar brand (logo) */
+.brand-logo {
+    padding: 0;
+    margin-right: 30px; /* Increased space between logo and nav links as per screenshot */
+    display: flex; /* Ensure logo and text (if any) are aligned */
+    align-items: center;
+}
+
+.nav-logo {
+    height: 60px; /* Adjust logo height as per screenshot */
+    width: auto;
+    object-fit: contain; /* Ensures logo fits without distortion */
+}
+
+/* Navigation Buttons Group - Using Bootstrap's gap utility */
+.navigation-buttons-group {
+    /* Bootstrap's ms-auto already pushes it to the right, gap-2 adds spacing */
+    /* No specific styling needed on this container itself, as child buttons are styled */
+}
+
+/* Nav button common base styles */
+.nav-button {
+    display: flex; /* Arrange icon and text in a row */
+    align-items: center; /* Vertically align icon and text */
+    gap: 8px; /* Space between icon and text */
+    padding: 12px 20px; /* Padding inside buttons */
+    border: none; /* No border for these buttons */
+    border-radius: 8px; /* Slightly rounded corners */
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; /* Smooth transitions */
+    background-color: transparent; /* Default transparent for base */
+    margin-right: 3rem;
+}
+
+/* Home/Active Button specific style */
+.home-active-button {
+    background-color: #d891ef; /* Light purple background as per screenshot */
+    color: #fff; /* White text */
+    box-shadow: 0 4px 12px rgba(216, 145, 239, 0.4); /* Subtle shadow for active button */
+    /* pointer-events: none; /* Remove pointer-events:none if you want it clickable */
+}
+
+.home-active-button:hover {
+    background-color: #c576e2; /* Slightly darker purple on hover */
+    transform: scale(1.02); /* Slight scale on hover */
+}
+
+/* Default Nav Button style (About, Contact, Deals) */
+.default-nav-button {
+    background-color: #f0f2f5; /* Light grey background as per screenshot */
+    color: #333; /* Darker text */
+    border: none; /* No border as per screenshot */
+}
+
+.default-nav-button:hover {
+    background-color: #e0e2e5; /* Slightly darker grey on hover */
+    color: #333; /* Text color remains dark on hover */
+    transform: scale(1.02); /* Slight scale on hover */
+}
+
+.nav-button svg {
+    font-size: 1.2em; /* Adjust icon size relative to text */
+    color: inherit; /* Icons inherit color from button text */
+    transition: transform 0.3s ease;
+}
+
+/* Phone Contact Section */
+.phone-contact-info {
+    /* ms-lg-4 on the JSX provides the margin from nav links on large screens */
+    display: flex; /* Already set in JSX d-flex */
+    align-items: center; /* Already set in JSX align-items-center */
+    gap: 10px; /* Space between icon and text details */
+}
+
+.phone-icon {
+    font-size: 1.5rem; /* Larger phone icon as per screenshot */
+    color: #666; /* Grey color for icon */
+    /* margin-right: 10px; /* Already handled by gap */
+}
+
+.phone-details {
+    display: flex;
+    flex-direction: column; /* Stack number and tagline vertically */
+    line-height: 1.2; /* Adjust line height for stacked text */
+}
+
+.phone-number {
+    font-size: 1.15rem; /* Size of the phone number */
+    font-weight: 700; /* Bold phone number */
+    color: #333; /* Dark text for number */
+}
+
+.phone-tagline {
+    font-size: 0.85rem; /* Smaller text for tagline */
+    color: #777; /* Lighter grey for tagline */
+}
+
+/* Responsive tweaks */
+@media (max-width: 991.98px) { /* Applies to screens smaller than large (lg) */
+    .custom-navbar {
+        margin: 10px; /* Reduce margin on smaller screens */
+        padding: 10px;
+        border-radius: 10px; /* Adjust border-radius for mobile */
+    }
+
+    .custom-navbar .container {
+        flex-direction: column; /* Stack items vertically in collapse */
+        align-items: flex-start; /* Align all content to the left */
+    }
+
+    .navbar-collapse {
+        width: 100%; /* Collapse takes full width */
+    }
+
+    .navigation-buttons-group {
+        width: 100%; /* Nav takes full width */
+        margin-left: 0 !important; /* Remove ms-auto on collapse */
+        margin-top: 15px; /* Space between logo/toggle and nav links */
+        gap: 10px; /* Adjust gap for vertical stacking */
+        align-items: flex-start !important; /* Align buttons to the left */
+        flex-direction: column; /* Stack nav links vertically */
+    }
+
+    .nav-button {
+        width: 100%; /* Buttons take full width when collapsed */
+        justify-content: flex-start; /* Align text inside buttons to the left */
+    }
+
+    .phone-contact-info {
+        margin-left: 0 !important; /* Remove margin on collapse */
+        margin-top: 15px; /* Space from nav links */
+        width: 100%; /* Take full width */
+        justify-content: flex-start; /* Align phone info to the left */
+        display: flex !important; /* Ensure it's displayed when toggled open on mobile */
+    }
+
+    .phone-icon {
+        font-size: 1.8rem; /* Smaller icon on mobile */
+    }
+
+    .phone-number {
+        font-size: 1.05rem; /* Smaller number on mobile */
+    }
+}
+
+@media (max-width: 767.98px) { /* Further adjustments for even smaller screens (md) */
+    .nav-logo {
+        height: 45px; /* Slightly smaller logo */
+    }
+}/* Max width to match screenshot's contained feel */
+    left: 0;
+    right: 0;
+    z-index: 1030; /* Ensure it stays on top */
+    position: fixed; /* Already fixed="top" in JSX, but good to confirm */
+    top: 0; /* Align to the top of the viewport */
+}
+
+/* Specific styling for the Navbar brand (logo) */
+.brand-logo {
+    padding: 0;
+    margin-right: 30px; /* Increased space between logo and nav links as per screenshot */
+    display: flex; /* Ensure logo and text (if any) are aligned */
+    align-items: center;
+}
+
+.nav-logo {
+    height: 60px; /* Adjust logo height as per screenshot */
+    width: auto;
+    object-fit: contain; /* Ensures logo fits without distortion */
+}
+
+/* Navigation Buttons Group - Using Bootstrap's gap utility */
+.navigation-buttons-group {
+    /* Bootstrap's ms-auto already pushes it to the right, gap-2 adds spacing */
+    /* No specific styling needed on this container itself, as child buttons are styled */
+}
+
+/* Nav button common base styles */
+.nav-button {
+    display: flex; /* Arrange icon and text in a row */
+    align-items: center; /* Vertically align icon and text */
+    gap: 8px; /* Space between icon and text */
+    padding: 12px 20px; /* Padding inside buttons */
+    border: none; /* No border for these buttons */
+    border-radius: 8px; /* Slightly rounded corners */
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; /* Smooth transitions */
+    background-color: transparent; /* Default transparent for base */
+}
+
+/* Home/Active Button specific style */
+.home-active-button {
+    background-color: #d891ef; /* Light purple background as per screenshot */
+    color: #fff; /* White text */
+    box-shadow: 0 4px 12px rgba(216, 145, 239, 0.4); /* Subtle shadow for active button */
+    /* pointer-events: none; /* Remove pointer-events:none if you want it clickable */
+}
+
+.home-active-button:hover {
+    background-color: #c576e2; /* Slightly darker purple on hover */
+    transform: scale(1.02); /* Slight scale on hover */
+}
+
+/* Default Nav Button style (About, Contact, Deals) */
+.default-nav-button {
+    background-color: #f0f2f5; /* Light grey background as per screenshot */
+    color: #333; /* Darker text */
+    border: none; /* No border as per screenshot */
+}
+
+.default-nav-button:hover {
+    background-color: #e0e2e5; /* Slightly darker grey on hover */
+    color: #333; /* Text color remains dark on hover */
+    transform: scale(1.02); /* Slight scale on hover */
+}
+
+.nav-button svg {
+    font-size: 1.2em; /* Adjust icon size relative to text */
+    color: inherit; /* Icons inherit color from button text */
+    transition: transform 0.3s ease;
+}
+
+/* Phone Contact Section */
+.phone-contact-info {
+    /* ms-lg-4 on the JSX provides the margin from nav links on large screens */
+    display: flex; /* Already set in JSX d-flex */
+    align-items: center; /* Already set in JSX align-items-center */
+    gap: 10px; /* Space between icon and text details */
+}
+
+.phone-icon {
+    font-size: 2.2rem; /* Larger phone icon as per screenshot */
+    color: #666; /* Grey color for icon */
+    /* margin-right: 10px; /* Already handled by gap */
+}
+
+.phone-details {
+    display: flex;
+    flex-direction: column; /* Stack number and tagline vertically */
+    line-height: 1.2; /* Adjust line height for stacked text */
+}
+
+.phone-number {
+    font-size: 1.15rem; /* Size of the phone number */
+    font-weight: 700; /* Bold phone number */
+    color: #333; /* Dark text for number */
+}
+
+.phone-tagline {
+    font-size: 0.85rem; /* Smaller text for tagline */
+    color: #777; /* Lighter grey for tagline */
+}
+
+/* Responsive tweaks */
+@media (max-width: 991.98px) { /* Applies to screens smaller than large (lg) */
+    .custom-navbar {
+        margin: 10px; /* Reduce margin on smaller screens */
+        padding: 10px;
+        border-radius: 10px; /* Adjust border-radius for mobile */
+    }
+
+    .custom-navbar .container {
+        flex-direction: column; /* Stack items vertically in collapse */
+        align-items: flex-start; /* Align all content to the left */
+    }
+
+    .navbar-collapse {
+        width: 100%; /* Collapse takes full width */
+    }
+
+    .navigation-buttons-group {
+        width: 100%; /* Nav takes full width */
+        margin-left: 0 !important; /* Remove ms-auto on collapse */
+        margin-top: 15px; /* Space between logo/toggle and nav links */
+        gap: 10px; /* Adjust gap for vertical stacking */
+        align-items: flex-start !important; /* Align buttons to the left */
+        flex-direction: column; /* Stack nav links vertically */
+    }
+
+    .nav-button {
+        width: 100%; /* Buttons take full width when collapsed */
+        justify-content: flex-start; /* Align text inside buttons to the left */
+    }
+
+    .phone-contact-info {
+        margin-left: 0 !important; /* Remove margin on collapse */
+        margin-top: 15px; /* Space from nav links */
+        width: 100%; /* Take full width */
+        justify-content: flex-start; /* Align phone info to the left */
+        display: flex !important; /* Ensure it's displayed when toggled open on mobile */
+    }
+
+    .phone-icon {
+        font-size: 1.8rem; /* Smaller icon on mobile */
+    }
+
+    .phone-number {
+        font-size: 1.05rem; /* Smaller number on mobile */
+    }
+}
+
+@media (max-width: 767.98px) { /* Further adjustments for even smaller screens (md) */
+    .nav-logo {
+        height: 45px; /* Slightly smaller logo */
+    }
+}

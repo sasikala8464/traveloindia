@@ -1,0 +1,173 @@
+/* Discover.css - Updated: No bubbles, no wavy underline, increased image size */
+
+.discover-section { /* Renamed from .bubble-section */
+    position: relative;
+    background-color: #f8fcff; /* Very light blue background for the entire section */
+    padding-bottom: 80px; /* Add some padding to the bottom */
+}
+
+/* Removed all .bubbles and @keyframes rise styles */
+
+/* ===== Content Container ===== */
+.content {
+    position: relative;
+    z-index: 1; /* Ensure content is above any potential background elements */
+    padding-top: 80px; /* More padding at the top */
+    padding-bottom: 80px; /* More padding at the bottom */
+}
+
+/* ===== Main Layout for Single Image and Text ===== */
+/* No specific styles here for .single-image-layout unless overriding default Bootstrap row behavior */
+
+/* ===== Single Image Styling ===== */
+.single-image-wrapper {
+    width: 100%; /* Take full width of its Col */
+    max-width: 700px; /* Increased max width for a larger image */
+    height: 500px; /* Increased fixed height for the main image */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15); /* Stronger shadow for the main image */
+    border-radius: 20px;
+    overflow: hidden; /* Ensure image respects border-radius */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.single-image-wrapper:hover {
+    transform: translateY(-8px) scale(1.01); /* Slight lift and scale on hover */
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25); /* More prominent shadow on hover */
+}
+
+.single-image-card {
+    height: 100%; /* Card takes full height of wrapper */
+    width: 100%; /* Card takes full width of wrapper */
+}
+
+.main-discover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image fills the space without distortion */
+    border-radius: 20px; /* Match wrapper border radius */
+    transition: transform 0.5s ease;
+}
+
+.single-image-wrapper:hover .main-discover-image {
+    transform: scale(1.05); /* Gentle zoom on image hover */
+}
+
+/* ===== Text Section Styling ===== */
+.text-card-wrapper {
+    position: relative; /* Kept relative in case other positioning is needed later, but not strictly for symbol-background */
+    overflow: hidden; /* Kept hidden in case content might overflow */
+    z-index: 1;
+    background: linear-gradient(135deg, #f8fcff, #eef7ff); /* Subtle gradient for background */
+    padding: 40px; /* Generous padding */
+    border-radius: 20px; /* Rounded corners for the text card */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Soft shadow */
+    min-height: 500px; /* Adjusted min-height to roughly match the larger image height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center content if there's extra space */
+}
+
+.text-card-content {
+    /* Removed position-relative as symbol-background is gone */
+    z-index: 2; /* Ensure text is above any potential background elements */
+}
+
+.text-card-content h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #333;
+    margin-bottom: 20px;
+    /* Removed specific span styling for wavy underline here */
+}
+
+/* Removed .text-card-content h1 span styles */
+
+
+.text-card-content p.lead {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.text-card-content p.lead strong {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Feature Card (the white box with icons/text) */
+.feature-card {
+    background-color: #ffffff;
+    border: none !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08) !important;
+    border-radius: 15px !important;
+    padding: 30px !important;
+}
+
+.feature-item {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+}
+
+.feature-item i {
+    color: #0077b6;
+    font-size: 1.1rem;
+}
+
+/* Removed all .symbol-background and .symbol related styles and keyframes */
+
+
+/* Responsive adjustments for the new layout */
+@media (max-width: 991.98px) { /* On medium/small screens, stack vertically */
+    .single-image-wrapper {
+        height: 380px; /* Adjusted height for smaller screens */
+        max-width: 600px;
+        margin-bottom: 40px; /* Space between image and text when stacked */
+    }
+    .text-card-wrapper {
+        min-height: auto; /* Allow text card to auto-adjust height */
+    }
+}
+
+@media (max-width: 767.98px) { /* Further adjustments for even smaller screens */
+    .single-image-wrapper {
+        height: 320px;
+        max-width: 500px;
+    }
+    .text-card-content h1 {
+        font-size: 2.2rem;
+    }
+    .text-card-content p.lead {
+        font-size: 1rem;
+    }
+    .feature-card {
+        padding: 20px !important;
+    }
+}
+
+@media (max-width: 575.98px) { /* Extra small screens */
+    .single-image-wrapper {
+        height: 280px;
+        max-width: 100%; /* Image takes full width on xs */
+    }
+    .text-card-content h1 {
+        font-size: 2rem;
+    }
+    .feature-item {
+        font-size: 0.9rem;
+    }
+    .feature-item i {
+        font-size: 1rem;
+    }
+}
