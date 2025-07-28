@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ff from "./Trip2images/trip2img1.jpg"
 import ff2 from "./Trip2images/trip2img2.jpg"
 import ff3 from "./Trip2images/trip3img3.jpg"
@@ -31,6 +31,7 @@ import {
     Accordion,
     Button,
     CardBody,
+    Modal,
 
 } from "react-bootstrap";
 import "./Trip1.css"; // Custom CSS for styling
@@ -42,6 +43,7 @@ const imageGroups = [
     [Image1, Image2, Image3],
     [Image4, Image1, Image2], // Add more sets if needed
 ];
+
 
 
 const reviews = [
@@ -62,7 +64,7 @@ const reviews = [
     {
         name: "Sebastian G.",
         text:
-"My kids loved the camel farm and the boat rides. The team made travel stress-free with smooth check-ins and assistance. Highly recommended!",
+            "My kids loved the camel farm and the boat rides. The team made travel stress-free with smooth check-ins and assistance. Highly recommended!",
 
         img: img3,
         rating: 4,
@@ -89,6 +91,8 @@ function renderStars(count) {
 const repeatedReviews = Array(3).fill(reviews).flat();
 
 const Trip2 = () => {
+      const [selectedImg, setSelectedImg] = useState(null);
+
 
     const dates = [
         {
@@ -113,69 +117,115 @@ const Trip2 = () => {
 
             <Container fluid className="trip-page">
 
-                <Container fluid className="mt-4" >
-                    <Card className="trip-banner-card" >
+                <Container fluid className="mt-4" id="banner-section">
+                    <Card className="trip-banner-card">
                         <div className="banner-img-wrapper">
                             <Card.Img src={banner} alt="Trip Banner" className="banner-img" />
                             <div className="overlay-text">
                                 <div className="breadcrumb-bar">
-                                    <span>Home</span> | <span>Destinations Asia</span> | <span className="active">MAGICAL RAJASTHAN WITH SPRITUAL VARANASI</span>
+                                    <span>Home</span> | <span>Destinations Asia</span> |
+                                    <span className="active">GOLDEN TRIANGLE TOUR</span>
                                 </div>
-                                <h1 className="banner-heading">MAGICAL RAJASTHAN WITH SPRITUAL VARANASI</h1>
+                                <h1 className="banner-heading">Golden Triangle Tour</h1>
                             </div>
                         </div>
 
                         <Card.Body className="tab-row p-0">
-                            <div className="tab-item">Overview</div>
-                            <div className="tab-item">Itinerary</div>
-                            <div className="tab-item">What's Included</div>
-                            <div className="tab-item">Reviews</div>
-                            <div className="tab-item">Availability</div>
+                            <div
+                                className="tab-item"
+                                onClick={() => document.getElementById("Colours of Rajasthan & the Soul of Varanasi Tour")
+                                    .scrollIntoView({ behavior: "smooth" })}
+                            >
+                                Overview
+                            </div>
+
+                            <div
+                                className="tab-item"
+                                onClick={() => document.getElementById("Itinerary section")
+                                    .scrollIntoView({ behavior: "smooth" })}
+                            >
+                                Itinerary
+                            </div>
+
+                            <div
+                                className="tab-item"
+                                onClick={() => document.getElementById("included-section")
+                                    .scrollIntoView({ behavior: "smooth" })}
+                            >
+                                What's Included
+                            </div>
+
+                            <div
+                                className="tab-item"
+                                onClick={() => document.getElementById("reviews-section")
+                                    .scrollIntoView({ behavior: "smooth" })}
+                            >
+                                Reviews
+                            </div>
+
+                            <div
+                                className="tab-item"
+                                onClick={() => document.getElementById("Dates & Availability")
+                                    .scrollIntoView({ behavior: "smooth" })}
+                            >
+                                Availability
+                            </div>
                         </Card.Body>
                     </Card>
                 </Container>
 
 
+
                 {/* images section */}
 
+<div>
                 <div className="image-grid-container">
-                    <div className="large-img">
-                        <Card>
-                            <Card.Img variant="top" src={ff} />
-                        </Card>
-                    </div>
+        <div className="large-img">
+          <Card onClick={() => setSelectedImg(ff)} style={{ cursor: "pointer" }}>
+            <Card.Img variant="top" src={ff} />
+          </Card>
+        </div>
 
-                    <div className="small-img">
-                        <Card>
-                            <Card.Img variant="top" src={ff2} />
-                        </Card>
-                    </div>
+        <div className="small-img">
+          <Card onClick={() => setSelectedImg(ff2)} style={{ cursor: "pointer" }}>
+            <Card.Img variant="top" src={ff2} />
+          </Card>
+        </div>
 
-                    <div className="small-img">
-                        <Card>
-                            <Card.Img variant="top" src={ff3} />
-                        </Card>
-                    </div>
+        <div className="small-img">
+          <Card onClick={() => setSelectedImg(ff3)} style={{ cursor: "pointer" }}>
+            <Card.Img variant="top" src={ff3} />
+          </Card>
+        </div>
 
-                    <div className="small-img">
-                        <Card>
-                            <Card.Img variant="top" src={ff4} />
-                        </Card>
-                    </div>
+        <div className="small-img">
+          <Card onClick={() => setSelectedImg(ff4)} style={{ cursor: "pointer" }}>
+            <Card.Img variant="top" src={ff4} />
+          </Card>
+        </div>
 
-                    <div className="small-img">
-                        <Card>
-                            <Card.Img variant="top" src={ff5} />
-                        </Card>
-                    </div>
+        <div className="small-img">
+          <Card onClick={() => setSelectedImg(ff5)} style={{ cursor: "pointer" }}>
+            <Card.Img variant="top" src={ff5} />
+          </Card>
+        </div>
                 </div>
-
+                 <Modal show={!!selectedImg} onHide={() => setSelectedImg(null)} size="xl" centered>
+        <Modal.Body className="p-0 text-center">
+          <img src={selectedImg} alt="Full View" className="img-fluid" />
+        </Modal.Body>
+      </Modal>
+</div>
 
                 <Container>
                     <Row>
                         <Col md={8}>
-                            <Container className="my-4">
-                                <h2>Colours of Rajasthan & the Soul of Varanasi Tour</h2>
+                            <Container id="Colours of Rajasthan & the Soul of Varanasi Tour" className="my-4">
+                                <h2 className="mb-4" onClick={() =>
+                                    document.getElementById("banner-section")
+                                        .scrollIntoView({ behavior: "smooth" })
+                                }
+                                    style={{ cursor: "pointer", color: "#080808ff" }}>Colours of Rajasthan & the Soul of Varanasi Tour</h2>
                                 <Row className="gy-4">
                                     <Col md={4}>
                                         <Card className="highlight-card">
@@ -184,7 +234,7 @@ const Trip2 = () => {
                                                     <FaCalendarAlt />
                                                 </div>
                                                 <div>
-                                                    <Card.Title>Travel</Card.Title>
+                                                    <h6>Travel</h6>
                                                     <Card.Text>16 Nights, 17 Days</Card.Text>
                                                 </div>
                                             </Card.Body>
@@ -198,7 +248,7 @@ const Trip2 = () => {
                                                     <FaHotel />
                                                 </div>
                                                 <div>
-                                                    <Card.Title>Accommodation</Card.Title>
+                                                    <h6>Accommodation</h6>
                                                     <Card.Text>3 Star Hotels</Card.Text>
                                                 </div>
                                             </Card.Body>
@@ -212,7 +262,7 @@ const Trip2 = () => {
                                                     <FaUtensils />
                                                 </div>
                                                 <div>
-                                                    <Card.Title>Meals</Card.Title>
+                                                    <h6>Meals</h6>
                                                     <Card.Text>Daily buffet breakfast at the hotels.</Card.Text>
                                                 </div>
                                             </Card.Body>
@@ -226,7 +276,7 @@ const Trip2 = () => {
                                                     <FaCar />
                                                 </div>
                                                 <div>
-                                                    <Card.Title>Transport</Card.Title>
+                                                    <h6>Transport</h6>
                                                     <Card.Text>Transportation in Air-conditioned Vehicle</Card.Text>
                                                 </div>
                                             </Card.Body>
@@ -240,7 +290,7 @@ const Trip2 = () => {
                                                     <FaUsers />
                                                 </div>
                                                 <div>
-                                                    <Card.Title>Group Size</Card.Title>
+                                                    <h6>Group Size</h6>
                                                     <Card.Text>Average 24 people</Card.Text>
                                                 </div>
                                             </Card.Body>
@@ -254,7 +304,7 @@ const Trip2 = () => {
                                                     <FaUserTie />
                                                 </div>
                                                 <div>
-                                                    <Card.Title>Team</Card.Title>
+                                                    <h6>Team</h6>
                                                     <Card.Text>Expert Trip Manager</Card.Text>
                                                 </div>
                                             </Card.Body>
@@ -297,11 +347,15 @@ const Trip2 = () => {
 
                             {/* overview */}
 
-                            <Container className="my-5">
+                            <Container id="Overview" className="my-5">
                                 <Row className="g-4">
                                     {/* Left Column: Overview */}
                                     <Col md={12}>
-                                        <h2 className="mb-4">Overview</h2>
+                                        <h2 className="mb-4" onClick={() =>
+                                            document.getElementById("banner-section")
+                                                .scrollIntoView({ behavior: "smooth" })
+                                        }
+                                            style={{ cursor: "pointer", color: "#080808ff" }}>Overview</h2>
                                         <p>
                                             One of the oldest civilisations in the world, India is a mosaic of multicultural experiences. With a rich heritage and myriad attractions, the country is among the most popular tourist destinations in the world. It covers an area of 32, 87,263 sq. km, extending from the snow-covered Himalayan heights to the tropical rain forests of the south. As the 7th largest country in the world, India stands apart from the rest of Asia, marked off as it is by mountains and the sea, which give the country a distinct geographical entity.
                                         </p>
@@ -322,195 +376,203 @@ const Trip2 = () => {
                                 </Row>
                             </Container>
 
-
-                            <Container className="my-5 timeline-container">
+                            {/* Itinerary */}
+                            <Container id="Itinerary section" className="my-5 timeline-container"
+                               >
+                                <h2  onClick={() => document.getElementById("banner-section").scrollIntoView({ behavior: "smooth" })}
+                                style={{ cursor: "pointer", color: "#090909ff" }} className="mb-4 fw-bold">Detailed Itinerary</h2>
                                 <Col md={12}>
-                                    <Accordion defaultActiveKey="0">
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="0">
-                                                <Accordion.Header>Day 1 - Arrival in Delhi</Accordion.Header>
-                                                <Accordion.Body>
-                                                    After arrival at the Delhi Airport, meet & greet at the airport with our representative and get transferred to the hotel. The rest of the night is at leisure. Overnight stay in Delhi.
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
+                            
 
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="1">
-                                                <Accordion.Header>Day 2 - DELHI SIGHTSEEING</Accordion.Header>
-                                                <Accordion.Body>
-                                                    After breakfast, proceed with Delhi sightseeing tour with first visit to Jama Masjid – the largest Mosque in India. Visit Chandni Chowk – oldest, biggest bazaar of Old Delhi. Walk up to Fatehpuri Masjid and enjoy a rickshaw ride till Red Fort. Here our driver will meet you and drive past Red Fort to reach Rajghat, a memorial where Mahatma Gandhi was cremated. An eternal flame burns on one side of this memorial. Also visit India Gate, President House, Parliament House drive past and here you can take some pictures.
+                                    <div className="timeline">
+                                        <Accordion defaultActiveKey="0">
+                                            <div className="timeline-item">
+                                                <div className="timeline-marker"></div>
+                                                <Accordion.Item eventKey="0">
+                                                    <Accordion.Header>Day 1 - Arrival in Delhi</Accordion.Header>
+                                                    <Accordion.Body>
+                                                        After arrival at the Delhi Airport, meet & greet at the airport with our representative and get transferred to the hotel. The rest of the night is at leisure. Overnight stay in Delhi.
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            </div>
 
-                                                    Visit the Humayun’s Tomb – first garden-style tomb of India… Visit Qutub Minar built by Qutab-ud-din Aibak in 1193 to mark the beginning of Muslim rule in India.
+                                            <div className="timeline-item">
+                                                <div className="timeline-marker"></div>
+                                                <Accordion.Item eventKey="1">
+                                                    <Accordion.Header>Day 2 - DELHI SIGHTSEEING</Accordion.Header>
+                                                    <Accordion.Body>
+                                                        After breakfast, proceed with Delhi sightseeing tour with first visit to Jama Masjid – the largest Mosque in India. Visit Chandni Chowk – oldest, biggest bazaar of Old Delhi. Walk up to Fatehpuri Masjid and enjoy a rickshaw ride till Red Fort. Here our driver will meet you and drive past Red Fort to reach Rajghat, a memorial where Mahatma Gandhi was cremated. An eternal flame burns on one side of this memorial. Also visit India Gate, President House, Parliament House drive past and here you can take some pictures.
 
-                                                    Overnight stay at hotel in Delhi.
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
+                                                        Visit the Humayun’s Tomb – first garden-style tomb of India… Visit Qutub Minar built by Qutab-ud-din Aibak in 1193 to mark the beginning of Muslim rule in India.
 
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="2">
-                                                <Accordion.Header>Day 3 -  Delhi - Mandawa (260 Kms / Approx 06 Hrs drive)</Accordion.Header>
-                                                <Accordion.Body>
-                                                    After breakfast, check out and drive to Mandawa. Explore Mandawa’s bazaars and Shekhawati Havelis.
-                                                    Overnight stay in Mandawa.
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
+                                                        Overnight stay at hotel in Delhi.
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            </div>
 
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="3">
-                                                <Accordion.Header>Day 4 - Mandawa - Bikaner (220 Kms / Approx 04 Hrs drive)</Accordion.Header>
-                                                <Accordion.Body>
-                                                    Check-in at hotel in Bikaner, then visit Junagarh Fort and Camel research and breeding farm.
-                                                    Overnight stay in Mandawa. (likely meant to be Bikaner)
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
+                                            <div className="timeline-item">
+                                                <div className="timeline-marker"></div>
+                                                <Accordion.Item eventKey="2">
+                                                    <Accordion.Header>Day 3 -  Delhi - Mandawa (260 Kms / Approx 06 Hrs drive)</Accordion.Header>
+                                                    <Accordion.Body>
+                                                        After breakfast, check out and drive to Mandawa. Explore Mandawa’s bazaars and Shekhawati Havelis.
+                                                        Overnight stay in Mandawa.
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            </div>
 
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="4">
-                                                <Accordion.Header>Day 5 - Bikaner - Jodhpur (250 Kms / Approx 06 Hrs drive)</Accordion.Header>
-                                                <Accordion.Body>
-                                                    Arrive in Jodhpur, check-in. Known as Blue City, famous for Mehrangarh Fort and Marwari horses.
-                                                    Overnight stay in Jodhpur.
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
+                                            <div className="timeline-item">
+                                                <div className="timeline-marker"></div>
+                                                <Accordion.Item eventKey="4">
+                                                    <Accordion.Header>Day 4 - Mandawa - Bikaner (220 Kms / Approx 04 Hrs drive)</Accordion.Header>
+                                                    <Accordion.Body>
+                                                        Check-in at hotel in Bikaner, then visit Junagarh Fort and Camel research and breeding farm.
+                                                        Overnight stay in Mandawa. (likely meant to be Bikaner)
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            </div>
 
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="5">
-                                                <Accordion.Header>Day 6 - Jodhpur Sightseeing</Accordion.Header>
-                                                <Accordion.Body>
-                                                    Visit Mehrangarh Fort and its palaces (Moti Mahal, Phool Mahal, Sheesh Mahal, etc.) and Jaswant Thada.
-                                                    Overnight stay in Jodhpur.
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="5">
-                                                <Accordion.Header>Day 7 - Jodhpur - Udaipur (250 Kms / Approx 05 Hrs drive) - Enroute Ranakpur</Accordion.Header>
-                                                <Accordion.Body>
-                                                    Visit Ranakpur Jain Temples, then drive to Udaipur.
-                                                    Overnight stay in Udaipur.
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="5">
-                                                <Accordion.Header>Day 8 - Udaipur Sightseeing</Accordion.Header>
-                                                <Accordion.Body>
-                                                    Visit City Palace, Sahelion Ki Bari, Lok Kala Mandal, Shilpgram, and enjoy Boat Ride on Lake Pichola.
-                                                    Overnight stay in Udaipur.
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="5">
-                                                <Accordion.Header>Day 9 - Udaipur - Jaipur (393 Kms / Approx 07 Hrs drive)</Accordion.Header>
-                                                <Accordion.Body>
-                                                    Drive to Jaipur, the “Pink City”.
-                                                    Overnight stay in Jaipur.                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="5">
-                                                <Accordion.Header>Day 10 - Jaipur Sightseeing</Accordion.Header>
-                                                <Accordion.Body>
-                                                    Visit Amer Fort (with Elephant Ride), City Palace, Jantar Mantar, Hawa Mahal. Afternoon free for shopping.
-                                                    Overnight stay in Jaipur.
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="5">
-                                                <Accordion.Header>Day 11 - Jaipur - Ranthambore (164 Kms / Approx. 04 Hrs. drive)
-                                                </Accordion.Header>
-                                                <Accordion.Body>
-                                                    Drive to Ranthambore, check-in, free time or village walk.
-                                                    Overnight stay in Ranthambore.
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="5">
-                                                <Accordion.Header>Day 12 -Ranthambore Safari</Accordion.Header>
-                                                <Accordion.Body>
-                                                    Morning & afternoon shared Jeep safaris in Ranthambore National Park.
-                                                    Overnight stay in Ranthambore.
-                                                    Overnight stay in Jodhpur.
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="5">
-                                                <Accordion.Header>Day 13 - :Ranthambore - Agra (260 Kms / Approx. 06 Hrs. drive); En-route Fatehpur Sikri</Accordion.Header>
-                                                <Accordion.Body>
-                                                    Visit Fatehpur Sikri, then reach Agra. Visit Taj Mahal, Agra Fort, and Mehtab Bagh.
-                                                    Overnight stay in Agra.
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="5">
-                                                <Accordion.Header>Day 14 - Agra - Delhi / Delhi – Varanasi flight</Accordion.Header>
-                                                <Accordion.Body>
-                                                    Fly from Delhi to Varanasi, transfer to hotel.
-                                                    Overnight stay in Varanasi.Overnight stay in Jodhpur.
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="5">
-                                                <Accordion.Header>Day 15 - Varanasi Sightseeing</Accordion.Header>
-                                                <Accordion.Body>
-                                                    Morning Boat Ride on Ganges, visit Sarnath, Birla Temple, Tulsi Manas Temple, Durga Temple, and attend Ganga Aarti at Dashashwamedh Ghat.
-                                                    Overnight stay in Varanasi.                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="5">
-                                                <Accordion.Header>Day 16 -  Varanasi – Delhi flight</Accordion.Header>
-                                                <Accordion.Body>
-                                                    Fly from Varanasi to Delhi, rest of day at leisure.
-                                                    Overnight stay in Delhi.
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="5">
-                                                <Accordion.Header>Day 17 - Delhi - Departure</Accordion.Header>
-                                                <Accordion.Body>
-                                                    Transfer to airport for departure.
-                                                    “END OF THE TOUR”
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
-                                    </Accordion>
+                                            <div className="timeline-item">
+                                                <div className="timeline-marker"></div>
+                                                <Accordion.Item eventKey="5">
+                                                    <Accordion.Header>Day 5 - Bikaner - Jodhpur (250 Kms / Approx 06 Hrs drive)</Accordion.Header>
+                                                    <Accordion.Body>
+                                                        Arrive in Jodhpur, check-in. Known as Blue City, famous for Mehrangarh Fort and Marwari horses.
+                                                        Overnight stay in Jodhpur.
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            </div>
+
+                                            <div className="timeline-item">
+                                                <div className="timeline-marker"></div>
+                                                <Accordion.Item eventKey="6">
+                                                    <Accordion.Header>Day 6 - Jodhpur Sightseeing</Accordion.Header>
+                                                    <Accordion.Body>
+                                                        Visit Mehrangarh Fort and its palaces (Moti Mahal, Phool Mahal, Sheesh Mahal, etc.) and Jaswant Thada.
+                                                        Overnight stay in Jodhpur.
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            </div>
+                                            <div className="timeline-item">
+                                                <div className="timeline-marker"></div>
+                                                <Accordion.Item eventKey="7">
+                                                    <Accordion.Header>Day 7 - Jodhpur - Udaipur (250 Kms / Approx 05 Hrs drive) - Enroute Ranakpur</Accordion.Header>
+                                                    <Accordion.Body>
+                                                        Visit Ranakpur Jain Temples, then drive to Udaipur.
+                                                        Overnight stay in Udaipur.
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            </div>
+                                            <div className="timeline-item">
+                                                <div className="timeline-marker"></div>
+                                                <Accordion.Item eventKey="8">
+                                                    <Accordion.Header>Day 8 - Udaipur Sightseeing</Accordion.Header>
+                                                    <Accordion.Body>
+                                                        Visit City Palace, Sahelion Ki Bari, Lok Kala Mandal, Shilpgram, and enjoy Boat Ride on Lake Pichola.
+                                                        Overnight stay in Udaipur.
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            </div>
+                                            <div className="timeline-item">
+                                                <div className="timeline-marker"></div>
+                                                <Accordion.Item eventKey="9">
+                                                    <Accordion.Header>Day 9 - Udaipur - Jaipur (393 Kms / Approx 07 Hrs drive)</Accordion.Header>
+                                                    <Accordion.Body>
+                                                        Drive to Jaipur, the “Pink City”.
+                                                        Overnight stay in Jaipur.                </Accordion.Body>
+                                                </Accordion.Item>
+                                            </div>
+                                            <div className="timeline-item">
+                                                <div className="timeline-marker"></div>
+                                                <Accordion.Item eventKey="10">
+                                                    <Accordion.Header>Day 10 - Jaipur Sightseeing</Accordion.Header>
+                                                    <Accordion.Body>
+                                                        Visit Amer Fort (with Elephant Ride), City Palace, Jantar Mantar, Hawa Mahal. Afternoon free for shopping.
+                                                        Overnight stay in Jaipur.
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            </div>
+                                            <div className="timeline-item">
+                                                <div className="timeline-marker"></div>
+                                                <Accordion.Item eventKey="11">
+                                                    <Accordion.Header>Day 11 - Jaipur - Ranthambore (164 Kms / Approx. 04 Hrs. drive)
+                                                    </Accordion.Header>
+                                                    <Accordion.Body>
+                                                        Drive to Ranthambore, check-in, free time or village walk.
+                                                        Overnight stay in Ranthambore.
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            </div>
+                                            <div className="timeline-item">
+                                                <div className="timeline-marker"></div>
+                                                <Accordion.Item eventKey="12">
+                                                    <Accordion.Header>Day 12 -Ranthambore Safari</Accordion.Header>
+                                                    <Accordion.Body>
+                                                        Morning & afternoon shared Jeep safaris in Ranthambore National Park.
+                                                        Overnight stay in Ranthambore.
+                                                        Overnight stay in Jodhpur.
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            </div>
+                                            <div className="timeline-item">
+                                                <div className="timeline-marker"></div>
+                                                <Accordion.Item eventKey="13">
+                                                    <Accordion.Header>Day 13 - :Ranthambore - Agra (260 Kms / Approx. 06 Hrs. drive); En-route Fatehpur Sikri</Accordion.Header>
+                                                    <Accordion.Body>
+                                                        Visit Fatehpur Sikri, then reach Agra. Visit Taj Mahal, Agra Fort, and Mehtab Bagh.
+                                                        Overnight stay in Agra.
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            </div>
+                                            <div className="timeline-item">
+                                                <div className="timeline-marker"></div>
+                                                <Accordion.Item eventKey="14">
+                                                    <Accordion.Header>Day 14 - Agra - Delhi / Delhi – Varanasi flight</Accordion.Header>
+                                                    <Accordion.Body>
+                                                        Fly from Delhi to Varanasi, transfer to hotel.
+                                                        Overnight stay in Varanasi.Overnight stay in Jodhpur.
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            </div>
+                                            <div className="timeline-item">
+                                                <div className="timeline-marker"></div>
+                                                <Accordion.Item eventKey="15">
+                                                    <Accordion.Header>Day 15 - Varanasi Sightseeing</Accordion.Header>
+                                                    <Accordion.Body>
+                                                        Morning Boat Ride on Ganges, visit Sarnath, Birla Temple, Tulsi Manas Temple, Durga Temple, and attend Ganga Aarti at Dashashwamedh Ghat.
+                                                        Overnight stay in Varanasi.                                                </Accordion.Body>
+                                                </Accordion.Item>
+                                            </div>
+                                            <div className="timeline-item">
+                                                <div className="timeline-marker"></div>
+                                                <Accordion.Item eventKey="16">
+                                                    <Accordion.Header>Day 16 -  Varanasi – Delhi flight</Accordion.Header>
+                                                    <Accordion.Body>
+                                                        Fly from Varanasi to Delhi, rest of day at leisure.
+                                                        Overnight stay in Delhi.
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            </div>
+                                            <div className="timeline-item">
+                                                <div className="timeline-marker"></div>
+                                                <Accordion.Item eventKey="17">
+                                                    <Accordion.Header>Day 17 - Delhi - Departure</Accordion.Header>
+                                                    <Accordion.Body>
+                                                        Transfer to airport for departure.
+                                                        “END OF THE TOUR”
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            </div>
+                                        </Accordion>
+                                    </div>
                                 </Col>
                             </Container>
 
 
+                            {/* What's Included*/}
 
-
-                            <Container className="my-5">
+                            <Container id="included-section" className="my-5" onClick={() => document.getElementById("banner-section").scrollIntoView({ behavior: "smooth" })}
+                                style={{ cursor: "pointer", color: "#090909ff" }}>
                                 <h2 className="mb-4">What's Included</h2>
                                 <Row>
                                     {/* Left side: content */}
@@ -557,22 +619,22 @@ const Trip2 = () => {
                                                 </Accordion.Body>
                                             </Accordion.Item>
                                             <Accordion.Item eventKey="1">
-                                                <Accordion.Header>Adventure & Sightseeing</Accordion.Header>
+                                                <Accordion.Header>✅ Adventure & Sightseeing</Accordion.Header>
                                                 <Accordion.Body>
                                                     <ul>
-                                                      <li> Rickshaw Ride in Old Delhi</li>
+                                                        <li> Rickshaw Ride in Old Delhi</li>
 
- <li>Elephant Ride to Amer Fort in Jaipur</li>
+                                                        <li>Elephant Ride to Amer Fort in Jaipur</li>
 
- <li>Boat ride at Lake Pichola in Udaipur</li>
+                                                        <li>Boat ride at Lake Pichola in Udaipur</li>
 
- <li>Sunset boat ride + Ganga Aarti in Varanasi</li>
+                                                        <li>Sunset boat ride + Ganga Aarti in Varanasi</li>
 
- <li>1 morning + 1 evening shared Jeep Safari in Ranthambore</li>
+                                                        <li>1 morning + 1 evening shared Jeep Safari in Ranthambore</li>
 
- <li>1 bottled water per person per day</li>
+                                                        <li>1 bottled water per person per day</li>
 
- <li>All government taxes included</li>
+                                                        <li>All government taxes included</li>
                                                     </ul>
                                                 </Accordion.Body>
                                             </Accordion.Item>
@@ -581,11 +643,11 @@ const Trip2 = () => {
                                                 <Accordion.Header>✅ Transport</Accordion.Header>
                                                 <Accordion.Body>
                                                     <ul>
-                                                       <li> All sightseeing and transfers by private air-conditioned vehicle</li>
+                                                        <li> All sightseeing and transfers by private air-conditioned vehicle</li>
 
-<li>Airport and railway station pickup/drop assistance</li>
+                                                        <li>Airport and railway station pickup/drop assistance</li>
 
-<li>All vehicle-related charges included (driver, tolls, fuel, parking).</li>
+                                                        <li>All vehicle-related charges included (driver, tolls, fuel, parking).</li>
                                                     </ul>
                                                 </Accordion.Body>
                                             </Accordion.Item>
@@ -610,7 +672,7 @@ const Trip2 = () => {
                                                 <Accordion.Body>
                                                     <ul>
                                                         <li>Medical or travel insurance for any kind.</li>
-                                                       
+
                                                     </ul>
                                                 </Accordion.Body>
                                             </Accordion.Item>
@@ -631,8 +693,9 @@ const Trip2 = () => {
                                     <Col md={4}></Col>
                                 </Row>
                             </Container>
-
-                            <Container className="my-5">
+                            {/* Customer Reviews */}
+                            <Container id="reviews-section" className="my-5" onClick={() => document.getElementById("banner-section").scrollIntoView({ behavior: "smooth" })}
+                                style={{ cursor: "pointer", color: "#090909ff" }}>
                                 <Row>
                                     {/* Left Section */}
                                     <Col md={12}>
@@ -691,8 +754,10 @@ const Trip2 = () => {
                             </Container>
 
 
-
-                            <Container className="my-5">
+                            {/* Dates & Availability */}
+                            <Container id="Dates & Availability" className="my-5"
+                                onClick={() => document.getElementById("banner-section").scrollIntoView({ behavior: "smooth" })}
+                                style={{ cursor: "pointer", color: "#0f1010ff" }}>
                                 <h2 className="fw-bold mb-4">Dates & Availability</h2>
 
                                 <Row>
@@ -771,7 +836,7 @@ const Trip2 = () => {
                                 {/* pyment section */}
                                 <Row>
                                     <Col md={12}>
-                                        <Card className="adventure-card shadow-sm">
+                                        <Card className="adventure-card shadow-sm" style={{ marginTop: '2rem' }}>
                                             <Card.Body>
                                                 <h5 className="adventure-title">Plan your adventure</h5>
 

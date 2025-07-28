@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ff from "./Trip1images/trip1img1.jpg"
 import ff2 from "./Trip1images/trip1img2.jpg"
 import ff3 from "./Trip1images/trip1img3.jpg"
@@ -31,6 +31,7 @@ import {
     Accordion,
     Button,
     CardBody,
+    Modal,
 
 } from "react-bootstrap";
 import "./Trip1.css"; // Custom CSS for styling
@@ -88,6 +89,8 @@ function renderStars(count) {
 const repeatedReviews = Array(3).fill(reviews).flat();
 
 const Trip1 = () => {
+          const [selectedImg, setSelectedImg] = useState(null);
+    
 
     const dates = [
         {
@@ -110,150 +113,194 @@ const Trip1 = () => {
     return (
         <>
 
-            <Container fluid className="trip-page">
+            <Container fluid className="trip-page" >
 
-                <Container fluid className="mt-4" >
-                    <Card className="trip-banner-card" >
+                <Container fluid className="mt-4" id="banner-section">
+                    <Card className="trip-banner-card">
                         <div className="banner-img-wrapper">
                             <Card.Img src={banner} alt="Trip Banner" className="banner-img" />
                             <div className="overlay-text">
                                 <div className="breadcrumb-bar">
-                                    <span>Home</span> | <span>Destinations Asia</span> | <span className="active">GOLDEN TRIANGLE TOUR</span>
+                                    <span>Home</span> | <span>Destinations Asia</span> |
+                                    <span className="active">GOLDEN TRIANGLE TOUR</span>
                                 </div>
                                 <h1 className="banner-heading">Golden Triangle Tour</h1>
                             </div>
                         </div>
 
                         <Card.Body className="tab-row p-0">
-                            <div className="tab-item">Overview</div>
-                            <div className="tab-item">Itinerary</div>
-                            <div className="tab-item">What's Included</div>
-                            <div className="tab-item">Reviews</div>
-                            <div className="tab-item">Availability</div>
+                            <div
+                                className="tab-item"
+                                onClick={() => document.getElementById("overview-section")
+                                    .scrollIntoView({ behavior: "smooth" })}
+                            >
+                                Overview
+                            </div>
+
+                            <div
+                                className="tab-item"
+                                onClick={() => document.getElementById("Itinerary section")
+                                    .scrollIntoView({ behavior: "smooth" })}
+                            >
+                                Itinerary
+                            </div>
+
+                            <div
+                                className="tab-item"
+                                onClick={() => document.getElementById("included-section")
+                                    .scrollIntoView({ behavior: "smooth" })}
+                            >
+                                What's Included
+                            </div>
+
+                            <div
+                                className="tab-item"
+                                onClick={() => document.getElementById("reviews-section")
+                                    .scrollIntoView({ behavior: "smooth" })}
+                            >
+                                Reviews
+                            </div>
+
+                            <div
+                                className="tab-item"
+                                onClick={() => document.getElementById("availability-section")
+                                    .scrollIntoView({ behavior: "smooth" })}
+                            >
+                                Availability
+                            </div>
                         </Card.Body>
                     </Card>
                 </Container>
 
 
-                {/* images section */}
 
+                {/* images section */}
+<div>
                 <div className="image-grid-container">
                     <div className="large-img">
-                        <Card>
+                        <Card onClick={() => setSelectedImg(ff)} style={{ cursor: "pointer" }}>
                             <Card.Img variant="top" src={ff} />
                         </Card>
                     </div>
+                    
 
                     <div className="small-img">
-                        <Card>
+                        <Card onClick={() => setSelectedImg(ff2)} style={{ cursor: "pointer" }}>
                             <Card.Img variant="top" src={ff2} />
                         </Card>
                     </div>
 
                     <div className="small-img">
-                        <Card>
+                        <Card onClick={() => setSelectedImg(ff3)} style={{ cursor: "pointer" }}>
                             <Card.Img variant="top" src={ff3} />
                         </Card>
                     </div>
 
                     <div className="small-img">
-                        <Card>
+                        <Card onClick={() => setSelectedImg(ff4)} style={{ cursor: "pointer" }}>
                             <Card.Img variant="top" src={ff4} />
                         </Card>
                     </div>
 
                     <div className="small-img">
-                        <Card>
+                        <Card onClick={() => setSelectedImg(ff5)} style={{ cursor: "pointer" }}>
                             <Card.Img variant="top" src={ff5} />
                         </Card>
                     </div>
                 </div>
+                 <Modal show={!!selectedImg} onHide={() => setSelectedImg(null)} size="xl" centered>
+                        <Modal.Body className="p-0 text-center">
+                          <img src={selectedImg} alt="Full View" className="img-fluid" />
+                        </Modal.Body>
+                      </Modal>
 
-
+</div>
                 <Container>
                     <Row>
                         <Col md={8}>
-                            <Container className="my-4">
-                                <h2>Explore Delhi, Agra, Jaipur</h2>
+                            <Container className="my-5">
+                                <h2 className="section-heading text-center mb-4">
+                                    Explore Delhi, Agra, Jaipur
+                                </h2>
                                 <Row className="gy-4">
-                                    <Col md={4}>
-                                        <Card className="highlight-card">
-                                            <Card.Body className="d-flex">
+                                    <Col md={4} sm={6}>
+                                        <Card className="highlight-card shadow-sm">
+                                            <Card.Body className="d-flex align-items-center">
                                                 <div className="highlight-icon">
                                                     <FaCalendarAlt />
                                                 </div>
-                                                <div>
-                                                    <Card.Title>Travel</Card.Title>
+                                                <div className="highlight-content">
+                                                    <h6>Travel</h6>
                                                     <Card.Text>06 days, 05 Nights</Card.Text>
                                                 </div>
                                             </Card.Body>
                                         </Card>
                                     </Col>
 
-                                    <Col md={4}>
-                                        <Card className="highlight-card">
-                                            <Card.Body className="d-flex">
+                                    <Col md={4} sm={6}>
+                                        <Card className="highlight-card shadow-sm">
+                                            <Card.Body className="d-flex align-items-center">
                                                 <div className="highlight-icon">
                                                     <FaHotel />
                                                 </div>
-                                                <div>
-                                                    <Card.Title>Accommodation</Card.Title>
+                                                <div className="highlight-content">
+                                                    <h6>Accommodation</h6>
                                                     <Card.Text>3 Star Hotels</Card.Text>
                                                 </div>
                                             </Card.Body>
                                         </Card>
                                     </Col>
 
-                                    <Col md={4}>
-                                        <Card className="highlight-card">
-                                            <Card.Body className="d-flex">
+                                    <Col md={4} sm={6}>
+                                        <Card className="highlight-card shadow-sm">
+                                            <Card.Body className="d-flex align-items-center">
                                                 <div className="highlight-icon">
                                                     <FaUtensils />
                                                 </div>
-                                                <div>
-                                                    <Card.Title>Meals</Card.Title>
+                                                <div className="highlight-content">
+                                                    <h6>Meals</h6>
                                                     <Card.Text>Daily buffet breakfast at the hotels.</Card.Text>
                                                 </div>
                                             </Card.Body>
                                         </Card>
                                     </Col>
 
-                                    <Col md={4}>
-                                        <Card className="highlight-card">
-                                            <Card.Body className="d-flex">
+                                    <Col md={4} sm={6}>
+                                        <Card className="highlight-card shadow-sm">
+                                            <Card.Body className="d-flex align-items-center">
                                                 <div className="highlight-icon">
                                                     <FaCar />
                                                 </div>
-                                                <div>
-                                                    <Card.Title>Transport</Card.Title>
-                                                    <Card.Text>Transportation in Air-conditioned Vehicle</Card.Text>
+                                                <div className="highlight-content">
+                                                    <h6>Transport</h6>
+                                                    <Card.Text>Air-conditioned Vehicle</Card.Text>
                                                 </div>
                                             </Card.Body>
                                         </Card>
                                     </Col>
 
-                                    <Col md={4}>
-                                        <Card className="highlight-card">
-                                            <Card.Body className="d-flex">
+                                    <Col md={4} sm={6}>
+                                        <Card className="highlight-card shadow-sm">
+                                            <Card.Body className="d-flex align-items-center">
                                                 <div className="highlight-icon">
                                                     <FaUsers />
                                                 </div>
-                                                <div>
-                                                    <Card.Title>Group Size</Card.Title>
+                                                <div className="highlight-content">
+                                                    <h6>Group Size</h6>
                                                     <Card.Text>Average 24 people</Card.Text>
                                                 </div>
                                             </Card.Body>
                                         </Card>
                                     </Col>
 
-                                    <Col md={4}>
-                                        <Card className="highlight-card">
-                                            <Card.Body className="d-flex">
+                                    <Col md={4} sm={6}>
+                                        <Card className="highlight-card shadow-sm">
+                                            <Card.Body className="d-flex align-items-center">
                                                 <div className="highlight-icon">
                                                     <FaUserTie />
                                                 </div>
-                                                <div>
-                                                    <Card.Title>Team</Card.Title>
+                                                <div className="highlight-content">
+                                                    <h6>Team</h6>
                                                     <Card.Text>Expert Trip Manager</Card.Text>
                                                 </div>
                                             </Card.Body>
@@ -261,8 +308,6 @@ const Trip1 = () => {
                                     </Col>
                                 </Row>
                             </Container>
-
-
                             {/* corosel images */}
                             <Container className="my-5">
                                 <h2>Places You’ll See</h2>
@@ -296,11 +341,15 @@ const Trip1 = () => {
 
                             {/* overview */}
 
-                            <Container className="my-5">
+                            <Container id="overview-section" className="my-5" >
                                 <Row className="g-4">
                                     {/* Left Column: Overview */}
                                     <Col md={12}>
-                                        <h2 className="mb-4">Overview</h2>
+                                        <h2 className="mb-4" onClick={() =>
+                                            document.getElementById("banner-section")
+                                                .scrollIntoView({ behavior: "smooth" })
+                                        }
+                                            style={{ cursor: "pointer", color: "#080808ff" }}>Overview</h2>
                                         <p>
                                             India’s Golden triangle is a classic tour that comprises of India’s most
                                             popular cities. Have an incredible escapade to Delhi, Agra & Jaipur and
@@ -340,107 +389,112 @@ const Trip1 = () => {
                                 </Row>
                             </Container>
 
+                            {/* Itinerary */}
+                            <Container id="Itinerary section" className="my-5 timeline-container" >
+                                <h2 onClick={() => document.getElementById("banner-section").scrollIntoView({ behavior: "smooth" })}
+                                style={{ cursor: "pointer", color: "#090909ff" }} className=" mb-4 fw-bold">Detailed Itinerary</h2>
+                                <Row>
+                                    <Col md={12}>
+                                        <div className="timeline">
+                                            <Accordion defaultActiveKey="0">
+                                                <div className="timeline-item">
+                                                    <div className="timeline-marker"></div>
+                                                    <Accordion.Item eventKey="0">
+                                                        <Accordion.Header>Day 1 - Arrival in Delhi</Accordion.Header>
+                                                        <Accordion.Body>
+                                                            Upon arrival at Delhi International Airport, our representative will meet you and assist you in transfer to your hotel. Check-in at the hotel on arrival and relax.
 
-                            <Container className="my-5 timeline-container">
-                                <Col md={12}>
-                                    <Accordion defaultActiveKey="0">
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="0">
-                                                <Accordion.Header>Day 1 - Arrival in Delhi</Accordion.Header>
-                                                <Accordion.Body>
-                                                    Upon arrival at Delhi International Airport, our representative will meet you and assist you in transfer to your hotel. Check-in at the hotel on arrival and relax.
+                                                            Delhi – India’s capital and major gateway to the country, contemporary Delhi is a bustling metropolis, which successfully combines in its fold, the ancient and the modern. Delhi unwinds a picture rich with culture, architecture, human diversity, history, monuments, museums, galleries, gardens and exotic shows. Comprising of two contrasting yet harmonious parts, the Old Delhi and the New Delhi, the city is a travel hub of Northern India. Delhi is a bliss for history lovers.
 
-                                                    Delhi – India’s capital and major gateway to the country, contemporary Delhi is a bustling metropolis, which successfully combines in its fold, the ancient and the modern. Delhi unwinds a picture rich with culture, architecture, human diversity, history, monuments, museums, galleries, gardens and exotic shows. Comprising of two contrasting yet harmonious parts, the Old Delhi and the New Delhi, the city is a travel hub of Northern India. Delhi is a bliss for history lovers.
+                                                            Overnight at hotel in Delhi.              </Accordion.Body>
+                                                    </Accordion.Item>
+                                                </div>
 
-                                                    Overnight at hotel in Delhi.
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
+                                                <div className="timeline-item">
+                                                    <div className="timeline-marker"></div>
+                                                    <Accordion.Item eventKey="2">
+                                                        <Accordion.Header>Day 2 - DELHI SIGHTSEEING</Accordion.Header>
+                                                        <Accordion.Body>
+                                                            After breakfast, proceed with Delhi sightseeing tour with first visit to Jama Masjid – the largest Mosque in India. Visit Chandni Chowk – oldest, biggest bazaar of Old Delhi. Walk up to Fatehpuri Masjid and enjoy a rickshaw ride till Red Fort. Here our driver will meet you and drive past Red Fort to reach Rajghat, a memorial where Mahatma Gandhi was cremated. An eternal flame burns on one side of this memorial. Also visit India Gate, President House, Parliament House drive past and here you can take some pictures.
 
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="1">
-                                                <Accordion.Header>Day 2 - DELHI SIGHTSEEING</Accordion.Header>
-                                                <Accordion.Body>
-                                                    After breakfast, proceed with Delhi sightseeing tour with first visit to Jama Masjid – the largest Mosque in India. Visit Chandni Chowk – oldest, biggest bazaar of Old Delhi. Walk up to Fatehpuri Masjid and enjoy a rickshaw ride till Red Fort. Here our driver will meet you and drive past Red Fort to reach Rajghat, a memorial where Mahatma Gandhi was cremated. An eternal flame burns on one side of this memorial. Also visit India Gate, President House, Parliament House drive past and here you can take some pictures.
+                                                            Visit the Humayun’s Tomb – first garden-style tomb of India… Visit Qutub Minar built by Qutab-ud-din Aibak in 1193 to mark the beginning of Muslim rule in India.
 
-                                                    Visit the Humayun’s Tomb – first garden-style tomb of India… Visit Qutub Minar built by Qutab-ud-din Aibak in 1193 to mark the beginning of Muslim rule in India.
+                                                            Overnight stay at hotel in Delhi.
+                                                        </Accordion.Body>
+                                                    </Accordion.Item>
+                                                </div>
 
-                                                    Overnight stay at hotel in Delhi.
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
+                                                <div className="timeline-item">
+                                                    <div className="timeline-marker"></div>
+                                                    <Accordion.Item eventKey="3">
+                                                        <Accordion.Header>Day 3 - DELHI - AGRA</Accordion.Header>
+                                                        <Accordion.Body>
+                                                            After breakfast, you will head to Agra. Agra – a wonderful former city of the Mughals, home to the famous Taj Mahal. Upon arrival, check-in at the hotel.
 
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="2">
-                                                <Accordion.Header>Day 3 - DELHI - AGRA</Accordion.Header>
-                                                <Accordion.Body>
-                                                    After breakfast, you will head to Agra. Agra – a wonderful former city of the Mughals, home to the famous Taj Mahal. Upon arrival, check-in at the hotel.
+                                                            After some relaxation, visit the Agra Fort.
 
-                                                    After some relaxation, visit the Agra Fort.
+                                                            Later in the evening, pay visit to the Taj Mahal. A mausoleum built by Shah Jahan for his empress Mumtaz Mahal… Watching sunset over this iconic monument is truly a sight to behold.
 
-                                                    Later in the evening, pay visit to the Taj Mahal. A mausoleum built by Shah Jahan for his empress Mumtaz Mahal… Watching sunset over this iconic monument is truly a sight to behold.
+                                                            Overnight stay at hotel in Agra.
+                                                        </Accordion.Body>
+                                                    </Accordion.Item>
+                                                </div>
 
-                                                    Overnight stay at hotel in Agra.
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
+                                                <div className="timeline-item">
+                                                    <div className="timeline-marker"></div>
+                                                    <Accordion.Item eventKey="4">
+                                                        <Accordion.Header>Day 4 - AGRA - JAIPUR</Accordion.Header>
+                                                        <Accordion.Body>
+                                                            Post breakfast and check out, drive to the beautiful city of Jaipur. En route visit Fatehpur Sikri. Built by Emperor Akbar in 1569…
 
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="3">
-                                                <Accordion.Header>Day 4 - AGRA - JAIPUR</Accordion.Header>
-                                                <Accordion.Body>
-                                                    Post breakfast and check out, drive to the beautiful city of Jaipur. En route visit Fatehpur Sikri. Built by Emperor Akbar in 1569…
+                                                            Continue drive to Jaipur. Upon arrival, check-in at the hotel.
 
-                                                    Continue drive to Jaipur. Upon arrival, check-in at the hotel.
+                                                            Jaipur: Known as the Pink City of India…
 
-                                                    Jaipur: Known as the Pink City of India…
-
-                                                    Overnight stay at hotel in Jaipur.
+                                                            Overnight stay at hotel in Jaipur.
 
 
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
+                                                        </Accordion.Body>
+                                                    </Accordion.Item>
+                                                </div>
 
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="4">
-                                                <Accordion.Header>Day 5 - JAIPUR SIGHTSEEING</Accordion.Header>
-                                                <Accordion.Body>
-                                                    After an early morning breakfast, visit the magnificent Amber Fort. Ride up to this hilltop palace on a caparisoned elephant…
+                                                <div className="timeline-item">
+                                                    <div className="timeline-marker"></div>
+                                                    <Accordion.Item eventKey="5">
+                                                        <Accordion.Header>Day 5 - JAIPUR SIGHTSEEING</Accordion.Header>
+                                                        <Accordion.Body>
+                                                            After an early morning breakfast, visit the magnificent Amber Fort. Ride up to this hilltop palace on a caparisoned elephant…
 
-                                                    Later, take a stop to photograph the beautiful Hawa Mahal… Also see the City Palace… Next stop is Jantar Mantar, again built by Sawai Jai Singh II…
+                                                            Later, take a stop to photograph the beautiful Hawa Mahal… Also see the City Palace… Next stop is Jantar Mantar, again built by Sawai Jai Singh II…
 
-                                                    In the evening, proceed to Jaipur Bazaars… Jaipur is the central hub for shopping in India…
+                                                            In the evening, proceed to Jaipur Bazaars… Jaipur is the central hub for shopping in India…
 
-                                                    Overnight at hotel in Jaipur.
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
+                                                            Overnight at hotel in Jaipur.
+                                                        </Accordion.Body>
+                                                    </Accordion.Item>
+                                                </div>
 
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="5">
-                                                <Accordion.Header>Day 6 - JAIPUR – DELHI</Accordion.Header>
-                                                <Accordion.Body>
-                                                    After breakfast, check out from the hotel and drive to Delhi airport to catch the flight for your own ward destination.
+                                                <div className="timeline-item">
+                                                    <div className="timeline-marker"></div>
+                                                    <Accordion.Item eventKey="6">
+                                                        <Accordion.Header>Day 6 - JAIPUR – DELHI</Accordion.Header>
+                                                        <Accordion.Body>
+                                                            After breakfast, check out from the hotel and drive to Delhi airport to catch the flight for your own ward destination.
 
-                                                    “END OF THE TOUR”
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
-                                    </Accordion>
-                                </Col>
+                                                            “END OF THE TOUR”
+                                                        </Accordion.Body>
+                                                    </Accordion.Item>
+                                                </div>
+                                            </Accordion></div>
+                                    </Col>
+                                </Row>
                             </Container>
 
 
 
-
-                            <Container className="my-5">
+                            {/* What's Included*/}
+                            <Container id="included-section" className="my-5" onClick={() => document.getElementById("banner-section").scrollIntoView({ behavior: "smooth" })}
+                                style={{ cursor: "pointer", color: "#050505ff" }}>
                                 <h2 className="mb-4">What's Included</h2>
                                 <Row>
                                     {/* Left side: content */}
@@ -541,7 +595,9 @@ const Trip1 = () => {
                                 </Row>
                             </Container>
 
-                            <Container className="my-5">
+                            {/* Customer Reviews */}
+                            <Container id="reviews-section" className="my-5" onClick={() => document.getElementById("banner-section").scrollIntoView({ behavior: "smooth" })}
+                                style={{ cursor: "pointer", color: "#0c0c0cff" }}>
                                 <Row>
                                     {/* Left Section */}
                                     <Col md={12}>
@@ -600,37 +656,45 @@ const Trip1 = () => {
                             </Container>
 
 
-
-                            <Container className="my-5">
+                            {/* Dates & Availability */}
+                            <Container id="availability-section" className="my-5" onClick={() => document.getElementById("banner-section").scrollIntoView({ behavior: "smooth" })}
+                                style={{ cursor: "pointer", color: "#0f1010ff" }}>
                                 <h2 className="fw-bold mb-4">Dates & Availability</h2>
 
                                 <Row>
-                                    {/* Left column for cards */}
                                     <Col md={12}>
                                         {dates.map((item, index) => (
-                                            <div key={index} className="shadow-sm custom-date-card p-3 mb-3 bg-white rounded">
-                                                <Row className="align-items-center text-center text-md-start">
-                                                    <Col xs={12} md={3}>
+                                            <div
+                                                key={index}
+                                                className="shadow-sm custom-date-card p-3 mb-3 bg-white rounded"
+                                            >
+                                                <Row className="align-items-center g-3 text-center text-md-start">
+                                                    {/* Start Date */}
+                                                    <Col xs={12} sm={6} md={3}>
                                                         <div className="text-muted">{item.startDay}</div>
                                                         <div className="fw-bold fs-5">{item.startDate}</div>
                                                     </Col>
 
-                                                    <Col xs={12} md={1} className="text-muted fs-4 text-center">
+                                                    {/* Arrow */}
+                                                    <Col xs={12} sm={12} md={1} className="fs-4 text-muted">
                                                         →
                                                     </Col>
 
-                                                    <Col xs={12} md={3}>
+                                                    {/* End Date */}
+                                                    <Col xs={12} sm={6} md={3}>
                                                         <div className="text-muted">{item.endDay}</div>
                                                         <div className="fw-bold fs-5">{item.endDate}</div>
                                                     </Col>
 
-                                                    <Col xs={12} md={3} className="mt-3 mt-md-0">
-                                                        <div className="text-muted">Total price</div>
+                                                    {/* Price */}
+                                                    <Col xs={12} sm={6} md={3}>
+                                                        <div className="text-muted">Total Price</div>
                                                         <div className="fw-bold fs-5">{item.price}</div>
                                                     </Col>
 
-                                                    <Col xs={12} md={2} className="mt-3 mt-md-0 text-center text-md-end">
-                                                        <Button variant="info" className="text-white px-4">
+                                                    {/* Button */}
+                                                    <Col xs={12} sm={6} md={2} className="text-center text-md-end">
+                                                        <Button variant="info" className="text-white w-100 w-md-auto">
                                                             Contact Us
                                                         </Button>
                                                     </Col>
@@ -638,8 +702,8 @@ const Trip1 = () => {
                                             </div>
                                         ))}
                                     </Col>
-
                                 </Row>
+
                             </Container>
                         </Col>
 
@@ -680,7 +744,7 @@ const Trip1 = () => {
                                 {/* pyment section */}
                                 <Row>
                                     <Col md={12}>
-                                        <Card className="adventure-card shadow-sm">
+                                        <Card className="adventure-card shadow-sm" style={{ marginTop: '2rem' }}>
                                             <Card.Body>
                                                 <h5 className="adventure-title">Plan your adventure</h5>
 

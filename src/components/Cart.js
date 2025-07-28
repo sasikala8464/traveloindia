@@ -79,9 +79,9 @@ const Cart = () => {
         data-index={tourCards.length}
         ref={(el) => (cardRefs.current[tourCards.length] = el)}
       >
-        <h3 className="tall-card-title">
+        <h4>
           Not Sure Where To Begin? Let India Unfold With Us
-        </h3>
+        </h4>
         <img src={sai7} alt="Explore India" className="tall-card-image" />
         <Button variant="primary">View Journeys</Button>
       </div>

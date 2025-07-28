@@ -116,49 +116,134 @@
   grid-template-columns: 2fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 15px;
-  padding: 20px;
 }
 
 .large-img {
   grid-row: span 2;
 }
 
-.large-img img,
-.small-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 12px;
+.image-grid-container img {
+  border-radius: 10px;
+  transition: transform 0.3s ease;
 }
 
+.image-grid-container img:hover {
+  transform: scale(1.03);
+  cursor: pointer;
+}
+
+/* code about section3  */
+/* Reset Card */
 .card {
   border: none;
 }
 
+/* Container for highlight cards */
 .highlight-card {
   border: 1px solid #e0e0e0;
   border-radius: 12px;
-  
-  box-shadow: none;
-  transition: transform 0.2s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 15px;
+  height: 100%;
+  background: #fff;
 }
 
 .highlight-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+.highlight-card .card-body {
+  display: flex;
+  align-items: center; /* Vertically align icon and text */
+  gap: 15px; /* Space between icon and text */
 }
 
+.highlight-card .text-content {
+  display: flex;
+  flex-direction: column; /* Stack title and text vertically */
+  justify-content: center; /* Center them vertically */
+  line-height: 1.4;
+}
+/* Icon Styling */
 .highlight-icon {
-  width: 48px;
-  height: 48px;
+  flex-shrink: 0; /* Prevent shrinking */
+  width: 50px;
+  height: 50px;
   background-color: #00bcd4;
   color: white;
-  border-radius: 8px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
-  margin-right: 15px;
+  font-size: 22px;
+    margin-right: 15px;
+
 }
+.highlight-content {
+  flex: 1;
+}
+.highlight-content .card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #222;
+}
+
+.highlight-content .card-text {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0;
+}
+
+.highlight-card .card-title {
+  margin: 0; /* Remove extra spacing */
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.highlight-card .card-text {
+  margin: 2px 0 0; /* Small spacing under title */
+  font-size: 0.95rem;
+  color: #666;
+}
+
+/* Responsive Grid Adjustments */
+@media (max-width: 991px) {
+   .highlight-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 22px;
+    margin-right: 12px;
+  }
+  .highlight-card {
+    padding: 16px;
+  }
+  .highlight-card .card-title {
+    font-size: 1.1rem;
+  }
+  .highlight-card .card-text {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .highlight-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+  .highlight-card {
+    text-align: center;
+  }
+  .highlight-card .d-flex {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
 
 .card-title {
   font-weight: 700;
@@ -331,46 +416,143 @@
   font-weight: bold;
   color: #222;
 }
+
+/* Black Button */
 .custom-btn-black {
   background-color: #000;
   color: #fff;
   border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
   transition: background-color 0.3s ease;
 }
 .custom-btn-black:hover {
   background-color: #333;
 }
 
+/* Red Button */
 .custom-btn-red {
   background-color: #e74c3c;
   color: #fff;
   border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
   transition: background-color 0.3s ease;
 }
 .custom-btn-red:hover {
   background-color: #c0392b;
-}
-.custom-btn-black {
-  background-color: #000;
-  color: #fff;
-  border: none;
-  transition: background-color 0.3s ease;
-}
-.custom-btn-black:hover {
-  background-color: #333;
 }
 
-.custom-btn-red {
-  background-color: #e74c3c;
-  color: #fff;
-  border: none;
-  transition: background-color 0.3s ease;
-}
-.custom-btn-red:hover {
-  background-color: #c0392b;
-}
+/* Custom Date Card */
 .custom-date-card {
-  margin-bottom: 8px; 
-  padding: 0px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+.custom-date-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .custom-date-card {
+    text-align: center;
+    padding: 15px;
+  }
+  .custom-date-card .btn {
+    margin-top: 12px;
+    width: 100%; /* Full width button on small screens */
+  }
+}
+
+.timeline {
+  position: relative;
+  margin-left: 40px; /* space for line & dots */
+  padding-left: 23px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 28px;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, #535758, #686b6c);
+  border-radius: 2px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -20px;
+  top: 15px;
+  width: 16px;
+  height: 16px;
+  background: #010202;
+  border: 3px solid rgb(101, 100, 100);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.tick-icon {
+  color: green;
+  margin-right: 8px;
+  font-size: 1.2rem; /* optional, to adjust size */
+}
+
+.accordion-item {
+  border: none;
+  border-radius: 8px;
+}
+
+.accordion-header {
+  border-bottom: 2px solid #ddd; /* Always visible bottom line */
+}
+
+.accordion-header button {
+  font-weight: 600;
+  color: #333;
+  background: transparent; 
+  box-shadow: none !important;  /* Remove focus shadow */
+  border: none !important;      /* Remove default border */
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  outline: none !important;     /* Remove blue outline */
+  border-bottom: 2px solid #ddd; /* Only bottom border */
+}
+
+.accordion-header button:not(.collapsed) {
+  color: #007bff;                 /* Optional active text color */
+  border-bottom: 2px solid #007bff; /* Highlight bottom border when open */
+}
+
+.accordion-body {
+  background: #f0f4ff; /* light blue shade, change as you like */
+  border: 1px solid #d0d7ff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 8px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #333; /* readable text */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .timeline {
+    margin-left: 20px;
+  }
+  .timeline-marker {
+    left: -15px;
+  }
 }
 

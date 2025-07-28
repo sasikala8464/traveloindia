@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ff from "./Trip3images/Trip3.imge1.png"
 import ff2 from "./Trip3images/Trip3.imge2.png"
 import ff3 from "./Trip3images/Trip3.img3.jpg"
@@ -31,6 +31,7 @@ import {
     Accordion,
     Button,
     CardBody,
+    Modal,
 
 } from "react-bootstrap";
 import "./Trip1.css"; // Custom CSS for styling
@@ -62,7 +63,7 @@ const reviews = [
     {
         name: "Emily Martinez Cus",
         text:
-           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.",
         img: img3,
         rating: 4,
     },
@@ -88,6 +89,8 @@ function renderStars(count) {
 const repeatedReviews = Array(3).fill(reviews).flat();
 
 const Trip3 = () => {
+              const [selectedImg, setSelectedImg] = useState(null);
+    
 
     const dates = [
         {
@@ -112,69 +115,112 @@ const Trip3 = () => {
 
             <Container fluid className="trip-page">
 
-                <Container fluid className="mt-4" >
-                    <Card className="trip-banner-card" >
+                <Container fluid className="mt-4" id="banner-section">
+                    <Card className="trip-banner-card">
                         <div className="banner-img-wrapper">
                             <Card.Img src={banner} alt="Trip Banner" className="banner-img" />
                             <div className="overlay-text">
                                 <div className="breadcrumb-bar">
-                                    <span>Home</span> | <span>Destinations Asia</span> | <span className="active">GOLDEN TRIANGLE TOUR</span>
+                                    <span>Home</span> | <span>Destinations Asia</span> |
+                                    <span className="active">GOLDEN TRIANGLE TOUR</span>
                                 </div>
-                                <h1 className="banner-heading">BEST OF KERALA TOUR</h1>
+                                <h1 className="banner-heading">Golden Triangle Tour</h1>
                             </div>
                         </div>
 
                         <Card.Body className="tab-row p-0">
-                            <div className="tab-item">Overview</div>
-                            <div className="tab-item">Itinerary</div>
-                            <div className="tab-item">What's Included</div>
-                            <div className="tab-item">Reviews</div>
-                            <div className="tab-item">Availability</div>
+                            <div
+                                className="tab-item"
+                                onClick={() => document.getElementById("Overview")
+                                    .scrollIntoView({ behavior: "smooth" })}
+                            >
+                                Overview
+                            </div>
+
+                            <div
+                                className="tab-item"
+                                onClick={() => document.getElementById("Itinerary section")
+                                    .scrollIntoView({ behavior: "smooth" })}
+                            >
+                                Itinerary
+                            </div>
+
+                            <div
+                                className="tab-item"
+                                onClick={() => document.getElementById("included-section")
+                                    .scrollIntoView({ behavior: "smooth" })}
+                            >
+                                What's Included
+                            </div>
+
+                            <div
+                                className="tab-item"
+                                onClick={() => document.getElementById("reviews-section")
+                                    .scrollIntoView({ behavior: "smooth" })}
+                            >
+                                Reviews
+                            </div>
+
+                            <div
+                                className="tab-item"
+                                onClick={() => document.getElementById("Dates & Availability")
+                                    .scrollIntoView({ behavior: "smooth" })}
+                            >
+                                Availability
+                            </div>
                         </Card.Body>
                     </Card>
                 </Container>
-
-
                 {/* images section */}
 
+<div>
                 <div className="image-grid-container">
                     <div className="large-img">
-                        <Card>
+                        <Card onClick={() => setSelectedImg(ff)} style={{ cursor: "pointer" }}>
                             <Card.Img variant="top" src={ff} />
                         </Card>
                     </div>
 
                     <div className="small-img">
-                        <Card>
+                        <Card onClick={() => setSelectedImg(ff2)} style={{ cursor: "pointer" }}>
                             <Card.Img variant="top" src={ff2} />
                         </Card>
                     </div>
 
                     <div className="small-img">
-                        <Card>
+                        <Card onClick={() => setSelectedImg(ff3)} style={{ cursor: "pointer" }}>
                             <Card.Img variant="top" src={ff3} />
                         </Card>
                     </div>
 
                     <div className="small-img">
-                        <Card>
+                        <Card onClick={() => setSelectedImg(ff4)} style={{ cursor: "pointer" }}>
                             <Card.Img variant="top" src={ff4} />
                         </Card>
                     </div>
 
                     <div className="small-img">
-                        <Card>
+                        <Card onClick={() => setSelectedImg(ff5)} style={{ cursor: "pointer" }}>
                             <Card.Img variant="top" src={ff5} />
                         </Card>
                     </div>
                 </div>
+                  <Modal show={!!selectedImg} onHide={() => setSelectedImg(null)} size="xl" centered>
+                                        <Modal.Body className="p-0 text-center">
+                                          <img src={selectedImg} alt="Full View" className="img-fluid" />
+                                        </Modal.Body>
+                                      </Modal>
 
-
+</div>
                 <Container>
                     <Row>
                         <Col md={8}>
-                            <Container className="my-4">
-                                <h2>Discover the Soul of South India - KERALA</h2>
+                            <Container id="Colours of Rajasthan & the Soul of Varanasi Tour" className="my-4">
+                                <h2 onClick={() =>
+                                    document.getElementById("banner-section")
+                                        .scrollIntoView({ behavior: "smooth" })
+                                }
+                                    style={{ cursor: "pointer", color: "#080808ff" }}>Discover the Soul of South India - KERALA</h2>
                                 <Row className="gy-4">
                                     <Col md={4}>
                                         <Card className="highlight-card">
@@ -183,7 +229,7 @@ const Trip3 = () => {
                                                     <FaCalendarAlt />
                                                 </div>
                                                 <div>
-                                                    <Card.Title>Travel</Card.Title>
+                                                    <h6>Travel</h6>
                                                     <Card.Text>06 days, 05 Nights</Card.Text>
                                                 </div>
                                             </Card.Body>
@@ -197,7 +243,7 @@ const Trip3 = () => {
                                                     <FaHotel />
                                                 </div>
                                                 <div>
-                                                    <Card.Title>Accommodation</Card.Title>
+                                                    <h6>Accommodation</h6>
                                                     <Card.Text>4 Star Hotels</Card.Text>
                                                 </div>
                                             </Card.Body>
@@ -211,7 +257,7 @@ const Trip3 = () => {
                                                     <FaUtensils />
                                                 </div>
                                                 <div>
-                                                    <Card.Title>Meals</Card.Title>
+                                                    <h6>Meals</h6>
                                                     <Card.Text>Daily buffet breakfast at the hotels.</Card.Text>
                                                 </div>
                                             </Card.Body>
@@ -225,7 +271,7 @@ const Trip3 = () => {
                                                     <FaCar />
                                                 </div>
                                                 <div>
-                                                    <Card.Title>Transport</Card.Title>
+                                                    <h6>Transport</h6>
                                                     <Card.Text>Transportation in Air-conditioned Vehicle</Card.Text>
                                                 </div>
                                             </Card.Body>
@@ -239,7 +285,7 @@ const Trip3 = () => {
                                                     <FaUsers />
                                                 </div>
                                                 <div>
-                                                    <Card.Title>Group Size</Card.Title>
+                                                    <h6>Group Size</h6>
                                                     <Card.Text>Average 24 people</Card.Text>
                                                 </div>
                                             </Card.Body>
@@ -253,7 +299,7 @@ const Trip3 = () => {
                                                     <FaUserTie />
                                                 </div>
                                                 <div>
-                                                    <Card.Title>Team</Card.Title>
+                                                    <h6>Team</h6>
                                                     <Card.Text>Expert Trip Manager</Card.Text>
                                                 </div>
                                             </Card.Body>
@@ -296,11 +342,15 @@ const Trip3 = () => {
 
                             {/* overview */}
 
-                            <Container className="my-5">
+                            <Container id="Overview" className="my-5">
                                 <Row className="g-4">
                                     {/* Left Column: Overview */}
                                     <Col md={12}>
-                                        <h2 className="mb-4">Overview</h2>
+                                        <h2 className="mb-4" onClick={() =>
+                                            document.getElementById("banner-section")
+                                                .scrollIntoView({ behavior: "smooth" })
+                                        }
+                                            style={{ cursor: "pointer", color: "#080808ff" }} classname="mb-4">Overview</h2>
                                         <p>
                                             Explore the natural beauty and peaceful charm of Kerala on this 6-day
                                             journey through Cochin, Munnar, Thekkady, and Alleppey. Walk through tea-covered hills, see rich wildlife, enjoy a relaxing boat stay on calm backwaters, and discover Kerala’s colorful culture and warm hospitality. From old-world streets in Cochin to quiet houseboat rides in Alleppey, this tour gives you the
@@ -319,102 +369,112 @@ const Trip3 = () => {
                             </Container>
 
 
-                            <Container className="my-5 timeline-container">
+                            <Container id="Itinerary section" className="my-5 timeline-container">
+                                <h2 className="mb-4 fw-bold"  onClick={() =>
+                                document.getElementById("banner-section")
+                                    .scrollIntoView({ behavior: "smooth" })
+                            }
+                                style={{ cursor: "pointer", color: "#080808ff" }}>Detailed Itinerary</h2>
+
                                 <Col md={12}>
-                                    <Accordion defaultActiveKey="0">
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="0">
-                                                <Accordion.Header>Day 1 - Arrival in Delhi</Accordion.Header>
-                                                <Accordion.Body>
-                                                    Upon arrival at Kochi airport our representative will meet you and transfer you to the hotel in Kochi. KOCHI: Kochi, also known as Cochin, is a beautiful city in the Ernakulam district of Kerala. Over the years, the history and development of this city carries stubborn marks of the British, Arabs, Chinese, Dutch, and Portuguese. It is undoubtedly the best starting point on your discovery to capture the beauty of God’s own country – Kerala.
-                                                    Overnight stay at hotel in Kochi.
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
 
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="1">
-                                                <Accordion.Header>Day 2 - KOCHI – MUNNAR [165 KMS /APPROX. 5 HRS]</Accordion.Header>
-                                                <Accordion.Body>
-                                                    After breakfast, go for Kochi sightseeing tour begins with
-                                                    visit to Fort Kochi located on the western coast of India
-                                                    amidst the pristine waters of Arabian Sea. On visiting this fort, soak in the mesmerizing
-                                                    specimens of the bygone era. The architecture of this gorgeous fort uncovers the layers of colonial\
-                                                    influence ingrained in the landscape of this city.
-                                                    Visit the St. Francis Church (Closed on Sundays from 08.00 to 11.00 hrs)
-                                                    within the middle of fort’s complex. Built in the year 1503, it is the oldest church built by Europeans in India.
-                                                    The lofty architecture of this Church is impressive in every way and has managed to retain its ancient charm, over the years. Also, visit the Jewish Synagogue located close to Fort Kochi,
-                                                    which is more than 100-years old. It was built in 1568 and is a showpiece displaying hand-painted floor tiles, Belgium-imported glass chandeliors, rare antiques etc.
-                                                    and an exclusive gallery. Your Kochi sightseeing tour ends with visit to Chinese Fishing Nets.
-                                                    Later drive to Munnar. Upon arrival at Munnar check in to hotel and relax.
-                                                    Overnight stay at hotel in Munnar.
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
+                                    <div className="timeline">
+                                        <Accordion defaultActiveKey="0">
+                                            <div className="timeline-item">
+                                                <div className="timeline-marker"></div>
+                                                <Accordion.Item eventKey="0">
+                                                    <Accordion.Header>Day 1 - Arrival in Delhi</Accordion.Header>
+                                                    <Accordion.Body>
+                                                        Upon arrival at Kochi airport our representative will meet you and transfer you to the hotel in Kochi. KOCHI: Kochi, also known as Cochin, is a beautiful city in the Ernakulam district of Kerala. Over the years, the history and development of this city carries stubborn marks of the British, Arabs, Chinese, Dutch, and Portuguese. It is undoubtedly the best starting point on your discovery to capture the beauty of God’s own country – Kerala.
+                                                        Overnight stay at hotel in Kochi.
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            </div>
 
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="2">
-                                                <Accordion.Header>Day 3 : MUNNAR SIGHTSEEING</Accordion.Header>
-                                                <Accordion.Body>
-                                                    After breakfast, start sightseeing for MUNNAR: a beautiful hill station named after three rivers: Madhurapuzha, Nallathanni and Kundaly. It is a popular honeymoon destination in Kerala that offers spellbinding views of vast spice and tea plantations. It also boasts the highest peak in South India – Anamudi. Munnar is surrounded by various wildlife sanctuaries that house the grizzled giant squirrel, Elephant, Gaur, Nilgiri Langur, Sambar, etc and the endangered Nilgiri Tahr (Mountain Goat). Also, a blue flower “Neelakurinji:” grows here in every 12 years.
+                                            <div className="timeline-item">
+                                                <div className="timeline-marker"></div>
+                                                <Accordion.Item eventKey="1">
+                                                    <Accordion.Header>Day 2 - KOCHI – MUNNAR [165 KMS /APPROX. 5 HRS]</Accordion.Header>
+                                                    <Accordion.Body>
+                                                        After breakfast, go for Kochi sightseeing tour begins with
+                                                        visit to Fort Kochi located on the western coast of India
+                                                        amidst the pristine waters of Arabian Sea. On visiting this fort, soak in the mesmerizing
+                                                        specimens of the bygone era. The architecture of this gorgeous fort uncovers the layers of colonial\
+                                                        influence ingrained in the landscape of this city.
+                                                        Visit the St. Francis Church (Closed on Sundays from 08.00 to 11.00 hrs)
+                                                        within the middle of fort’s complex. Built in the year 1503, it is the oldest church built by Europeans in India.
+                                                        The lofty architecture of this Church is impressive in every way and has managed to retain its ancient charm, over the years. Also, visit the Jewish Synagogue located close to Fort Kochi,
+                                                        which is more than 100-years old. It was built in 1568 and is a showpiece displaying hand-painted floor tiles, Belgium-imported glass chandeliors, rare antiques etc.
+                                                        and an exclusive gallery. Your Kochi sightseeing tour ends with visit to Chinese Fishing Nets.
+                                                        Later drive to Munnar. Upon arrival at Munnar check in to hotel and relax.
+                                                        Overnight stay at hotel in Munnar.
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            </div>
 
-                                                    Visit the Eravikulam National Park, home to the exotic Nilgiri Tahr (Mountain Goat) and other endangered species.
-                                                    (The park is closed in March every year for the mating season of the Nilgiri Tahr.)
-                                                    Also visit the Mattupetty Dam, a concrete gravity dam with scenic views of tea gardens reflecting on its waters.
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
+                                            <div className="timeline-item">
+                                                <div className="timeline-marker"></div>
+                                                <Accordion.Item eventKey="2">
+                                                    <Accordion.Header>Day 3 : MUNNAR SIGHTSEEING</Accordion.Header>
+                                                    <Accordion.Body>
+                                                        After breakfast, start sightseeing for MUNNAR: a beautiful hill station named after three rivers: Madhurapuzha, Nallathanni and Kundaly. It is a popular honeymoon destination in Kerala that offers spellbinding views of vast spice and tea plantations. It also boasts the highest peak in South India – Anamudi. Munnar is surrounded by various wildlife sanctuaries that house the grizzled giant squirrel, Elephant, Gaur, Nilgiri Langur, Sambar, etc and the endangered Nilgiri Tahr (Mountain Goat). Also, a blue flower “Neelakurinji:” grows here in every 12 years.
 
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="3">
-                                                <Accordion.Header>Day 4 - MUNNAR - THEKKADY [110 KMS/APPROX. 3.5 HRS]</Accordion.Header>
-                                                <Accordion.Body>
-                                                    After breakfast, we will drive you to Thekkady. THEKKADY: A landscape set amidst the Western Ghats, Thekkady is known for its rich biodiversity and the Periyar Wildlife Sanctuary, a major tiger reserve.
+                                                        Visit the Eravikulam National Park, home to the exotic Nilgiri Tahr (Mountain Goat) and other endangered species.
+                                                        (The park is closed in March every year for the mating season of the Nilgiri Tahr.)
+                                                        Also visit the Mattupetty Dam, a concrete gravity dam with scenic views of tea gardens reflecting on its waters.
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            </div>
 
-                                                    Visit the Periyar Wildlife Sanctuary, home to Bengal tigers, elephants, boars, leopards and more.
-                                                    Optional boat ride on Periyar Lake to spot wildlife and view surrounding spice plantations.
-                                                    Overnight stay at hotel in Thekkady.
+                                            <div className="timeline-item">
+                                                <div className="timeline-marker"></div>
+                                                <Accordion.Item eventKey="3">
+                                                    <Accordion.Header>Day 4 - MUNNAR - THEKKADY [110 KMS/APPROX. 3.5 HRS]</Accordion.Header>
+                                                    <Accordion.Body>
+                                                        After breakfast, we will drive you to Thekkady. THEKKADY: A landscape set amidst the Western Ghats, Thekkady is known for its rich biodiversity and the Periyar Wildlife Sanctuary, a major tiger reserve.
 
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
+                                                        Visit the Periyar Wildlife Sanctuary, home to Bengal tigers, elephants, boars, leopards and more.
+                                                        Optional boat ride on Periyar Lake to spot wildlife and view surrounding spice plantations.
+                                                        Overnight stay at hotel in Thekkady.
 
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="4">
-                                                <Accordion.Header>Day 5 - THEKKADY – ALLEPPEY [145 KMS/APPROX. 4-5 HRS]</Accordion.Header>
-                                                <Accordion.Body>
-                                                    Drive to Alleppey – also called the “Venice of India”.
-                                                    On arrival, board your Houseboat (Kettuvallam) and cruise through the backwaters.
-                                                    Enjoy dinner and a pleasant overnight stay in the houseboat in Alleppey.
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            </div>
+
+                                            <div className="timeline-item">
+                                                <div className="timeline-marker"></div>
+                                                <Accordion.Item eventKey="4">
+                                                    <Accordion.Header>Day 5 - THEKKADY – ALLEPPEY [145 KMS/APPROX. 4-5 HRS]</Accordion.Header>
+                                                    <Accordion.Body>
+                                                        Drive to Alleppey – also called the “Venice of India”.
+                                                        On arrival, board your Houseboat (Kettuvallam) and cruise through the backwaters.
+                                                        Enjoy dinner and a pleasant overnight stay in the houseboat in Alleppey.
 
 
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            </div>
 
-                                        <div className="timeline-item">
-                                            <span className="timeline-dot" />
-                                            <Accordion.Item eventKey="5">
-                                                <Accordion.Header>Day 6 - ALLEPPEY - COCHIN [54 KMS/APPROX. 1.5 HRS]</Accordion.Header>
-                                                <Accordion.Body>
-                                                    After breakfast and relaxation on the houseboat, check out and transfer to Cochin airport for onward journey.
-                                                    “END OF THE TOUR”
-                                                </Accordion.Body>
-                                            </Accordion.Item>
-                                        </div>
-                                    </Accordion>
+                                            <div className="timeline-item">
+                                                <div className="timeline-marker"></div>
+                                                <Accordion.Item eventKey="5">
+                                                    <Accordion.Header>Day 6 - ALLEPPEY - COCHIN [54 KMS/APPROX. 1.5 HRS]</Accordion.Header>
+                                                    <Accordion.Body>
+                                                        After breakfast and relaxation on the houseboat, check out and transfer to Cochin airport for onward journey.
+                                                        “END OF THE TOUR”
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
+                                            </div>
+                                        </Accordion>
+                                    </div>
                                 </Col>
                             </Container>
 
 
 
 
-                            <Container className="my-5">
+                            <Container id="included-section" className="my-5" onClick={() => document.getElementById("banner-section").scrollIntoView({ behavior: "smooth" })}
+                                style={{ cursor: "pointer", color: "#090909ff" }}>
                                 <h2 className="mb-4">What's Included</h2>
                                 <Row>
                                     {/* Left side: content */}
@@ -508,75 +568,75 @@ const Trip3 = () => {
                                             </Accordion.Item>
 
                                             <Accordion.Item eventKey="6">
-                                            <h4>Important Information</h4>
+                                                <h4>Important Information</h4>
                                                 <Accordion.Header>!
-                                                   Things to Keep in Mind</Accordion.Header>
+                                                    Things to Keep in Mind</Accordion.Header>
                                                 <Accordion.Body>
-                                                <p>24-Hour Assistance: Your dedicated Travel Expert can be reached at any time in case of 
-                                                emergency. Local GeTS Holidays offices across India ensure on-ground support.</p>
+                                                    <p>24-Hour Assistance: Your dedicated Travel Expert can be reached at any time in case of
+                                                        emergency. Local GeTS Holidays offices across India ensure on-ground support.</p>
 
-<p>Hotel: Standard check-in at 14:00, check-out at 12:00 (early/late subject to availability).</p>
+                                                    <p>Hotel: Standard check-in at 14:00, check-out at 12:00 (early/late subject to availability).</p>
 
-<p>Internet: Availability may vary by region. Hotels may charge hourly or daily.</p>
+                                                    <p>Internet: Availability may vary by region. Hotels may charge hourly or daily.</p>
 
-<p>Tipping: Not mandatory but appreciated.</p>
-Suggested:
+                                                    <p>Tipping: Not mandatory but appreciated.</p>
+                                                    Suggested:
 
 
-                                                
+
                                                     <ul>
                                                         <li>USD 10/day for driver</li>
 
- <li>USD 8/day for guide</li>
+                                                        <li>USD 8/day for guide</li>
 
- <li>USD 3 for bellboy</li>
+                                                        <li>USD 3 for bellboy</li>
 
- <li>10% of the bill for waiters</li>
+                                                        <li>10% of the bill for waiters</li>
                                                     </ul>
-                                                    <p>Luggage: Domestic flight allowance: 15 kg checked + 7 kg hand baggage. 
-                                                    Excess baggage ~INR 250/kg.</p>
+                                                    <p>Luggage: Domestic flight allowance: 15 kg checked + 7 kg hand baggage.
+                                                        Excess baggage ~INR 250/kg.</p>
                                                 </Accordion.Body>
                                             </Accordion.Item>
 
-                                             <Accordion.Item eventKey="6">
+                                            <Accordion.Item eventKey="6">
                                                 <Accordion.Header>!
                                                     Passports and Visas</Accordion.Header>
                                                 <Accordion.Body>
                                                     <ul>
-                                                       <li>All travelers require a valid passport and visa.</li>
+                                                        <li>All travelers require a valid passport and visa.</li>
 
-<li>Passport must be valid for 6 months with at least 2 blank pages.</li>
+                                                        <li>Passport must be valid for 6 months with at least 2 blank pages.</li>
 
-<li>Apply for an e-Visa (available for many countries including USA, UK, Australia) via:</li>
-https://indianvisaonline.gov.in/evisa/tvoa.html
+                                                        <li>Apply for an e-Visa (available for many countries including USA, UK, Australia) via:</li>
+                                                        https://indianvisaonline.gov.in/evisa/tvoa.html
 
-<li>Apply 7–30 days before arrival. Approval usually takes 72 hours.</li>
+                                                        <li>Apply 7–30 days before arrival. Approval usually takes 72 hours.</li>
                                                     </ul>
                                                     <p>Multiple Entry Visa: Required if visiting neighboring countries (e.g., Nepal, Bhutan, Sri Lanka) along with India.</p>
                                                 </Accordion.Body>
                                             </Accordion.Item>
-                                             <Accordion.Item eventKey="6">
+                                            <Accordion.Item eventKey="6">
                                                 <Accordion.Header>❌
                                                     Health and Safety Information</Accordion.Header>
                                                 <Accordion.Body>
-                                                <p>COVID-19 Safety Protocols followed by staff, guides, and drivers:</p>
+                                                    <p>COVID-19 Safety Protocols followed by staff, guides, and drivers:</p>
                                                     <ul>
-                                                      <li> Thermal screening
-</li>
-                                                     
-<li>Sanitization of vehicles and hotels</li>
+                                                        <li> Thermal screening
+                                                        </li>
 
-<li>PPE usage (masks, gloves, sanitizers)</li>
+                                                        <li>Sanitization of vehicles and hotels</li>
 
-<li>Daily health checks</li>
+                                                        <li>PPE usage (masks, gloves, sanitizers)</li>
 
-<li>Social distancing in public places</li>
+                                                        <li>Daily health checks</li>
 
-<li>Safety kits provided to all guests (sanitizer, gloves, mask)</li>
+                                                        <li>Social distancing in public places</li>
 
-<li>Emphasis on private/customized tours</li>
+                                                        <li>Safety kits provided to all guests (sanitizer, gloves, mask)</li>
 
-<li>E-Documents provided (vouchers, invoices, itinerary)</li>
+                                                        <li>Emphasis on private/customized tours</li>
+
+                                                        <li>E-Documents provided (vouchers, invoices, itinerary)</li>
                                                     </ul>
                                                 </Accordion.Body>
                                             </Accordion.Item>
@@ -588,7 +648,11 @@ https://indianvisaonline.gov.in/evisa/tvoa.html
                                 </Row>
                             </Container>
 
-                            <Container className="my-5">
+                            <Container id="reviews-section" className="my-5" onClick={() =>
+                                document.getElementById("banner-section")
+                                    .scrollIntoView({ behavior: "smooth" })
+                            }
+                                style={{ cursor: "pointer", color: "#080808ff" }}>
                                 <Row>
                                     {/* Left Section */}
                                     <Col md={12}>
@@ -648,7 +712,11 @@ https://indianvisaonline.gov.in/evisa/tvoa.html
 
 
 
-                            <Container className="my-5">
+                            <Container id="Dates & Availability" className="my-5" onClick={() =>
+                                document.getElementById("banner-section")
+                                    .scrollIntoView({ behavior: "smooth" })
+                            }
+                                style={{ cursor: "pointer", color: "#080808ff" }}>
                                 <h2 className="fw-bold mb-4">Dates & Availability</h2>
 
                                 <Row>
@@ -727,7 +795,7 @@ https://indianvisaonline.gov.in/evisa/tvoa.html
                                 {/* pyment section */}
                                 <Row>
                                     <Col md={12}>
-                                        <Card className="adventure-card shadow-sm">
+                                        <Card className="adventure-card shadow-sm" style={{ marginTop: '2rem' }}>
                                             <Card.Body>
                                                 <h5 className="adventure-title">Plan your adventure</h5>
 
@@ -767,7 +835,7 @@ https://indianvisaonline.gov.in/evisa/tvoa.html
                                         <span className="active">GOLDEN TRIANGLE TOUR</span>
                                     </div>
                                     <h1 className="banner-heading">
-                                       Explore iconic destinations with expert insights
+                                        Explore iconic destinations with expert insights
                                     </h1>
                                     <Button>BOOK YOUR ADVENTURE</Button>
                                 </div>
